@@ -141,9 +141,9 @@ em { font-style: normal; color: var(--orange); }
   display: block;
 }
 .footer-logo-img {
-  height: 44px;
+  height: 22px;
   width: auto;
-  max-width: 240px;
+  max-width: 120px;
   opacity: 0.85;
 }
 
