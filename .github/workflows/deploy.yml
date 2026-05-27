@@ -6,22 +6,23 @@ on:
 
 jobs:
   deploy:
-    name: Deploy via FTP naar Strato
+    name: Deploy via SFTP naar Strato
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: ${{ secrets.FTP_PATH }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
+      - name: Install rsync + sshpass
+        run: sudo apt-get install -y sshpass rsync
+
+      - name: Deploy via rsync over SSH
+        env:
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sshpass -e rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no -p 22" \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.gitignore' \
+            ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:${{ secrets.FTP_PATH }}
