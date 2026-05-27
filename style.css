@@ -1017,6 +1017,16 @@ em { font-style: normal; color: var(--orange); }
 }
 .btn-full { width: 100%; text-align: center; }
 
+.about-bio { margin-top: 72px; padding-top: 64px; border-top: 1px solid var(--border); }
+.about-bio-inner { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: start; }
+.about-bio-text .section-tag { margin-bottom: 16px; }
+.about-bio-text h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white); margin: 0 0 16px; }
+.about-bio-text p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+.about-bio-facts { display: flex; flex-direction: column; gap: 12px; }
+.bio-fact { background: var(--charcoal); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
+.bio-fact-label { display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 4px; }
+.bio-fact-value { display: block; color: var(--white); font-weight: 500; font-size: 0.92rem; }
+
 @media (max-width: 900px) {
   .service-detail-grid { grid-template-columns: 1fr; gap: 40px; }
   .sidebar-card { position: static; }
@@ -1069,6 +1079,7 @@ em { font-style: normal; color: var(--orange); }
 
   .cta-actions { flex-direction: column; align-items: center; }
   .cta-actions .btn { width: 100%; max-width: 320px; }
+  .about-bio-inner { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
