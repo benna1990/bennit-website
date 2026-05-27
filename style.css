@@ -132,13 +132,16 @@ em { font-style: normal; color: var(--orange); }
 .logo {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  line-height: 1;
+}
+.logo-name {
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
 }
-.logo span { color: var(--orange); }
+.logo-name span { color: var(--orange); }
 .logo-tagline {
   font-size: 0.52rem;
   font-weight: 500;
@@ -147,7 +150,7 @@ em { font-style: normal; color: var(--orange); }
   color: var(--muted);
   line-height: 1;
 }
-.footer-logo { font-size: 1.2rem; }
+.footer-logo .logo-name { font-size: 1.2rem; }
 
 .nav-links {
   display: flex;
