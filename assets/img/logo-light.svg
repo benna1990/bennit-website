@@ -1,0 +1,30 @@
+<svg viewBox="0 0 920 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .benn {
+      font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+      font-size: 240px;
+      font-weight: 800;
+      fill: #ffffff;
+    }
+    .it {
+      font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+      font-size: 240px;
+      font-weight: 800;
+      fill: #F97316;
+    }
+    .tagline {
+      font-family: 'Space Grotesk', 'Inter', Arial, sans-serif;
+      font-size: 58px;
+      font-weight: 500;
+      letter-spacing: 16px;
+      fill: #8B9098;
+    }
+  </style>
+
+  <!-- BennIT als één woord via tspan — geen spatie/gap tussen Benn en IT -->
+  <text x="20" y="215">
+    <tspan class="benn">Benn</tspan><tspan class="it">IT</tspan>
+  </text>
+
+  <text x="28" y="315" class="tagline">MAKES IT WORK</text>
+</svg>

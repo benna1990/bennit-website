@@ -130,11 +130,24 @@ em { font-style: normal; color: var(--orange); }
 }
 
 .logo {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  display: inline-flex;
+  align-items: center;
   line-height: 1;
 }
+.logo-img {
+  height: 40px;
+  width: auto;
+  max-width: 220px;
+  display: block;
+}
+.footer-logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 240px;
+  opacity: 0.85;
+}
+
+/* Fallback text logo (behouden voor compatibiliteit) */
 .logo-name {
   font-size: 1.4rem;
   font-weight: 700;
@@ -150,7 +163,6 @@ em { font-style: normal; color: var(--orange); }
   color: var(--muted);
   line-height: 1;
 }
-.footer-logo .logo-name { font-size: 1.2rem; }
 
 .nav-links {
   display: flex;
@@ -204,11 +216,11 @@ em { font-style: normal; color: var(--orange); }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(249,115,22,0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249,115,22,0.055) 1px, transparent 1px);
+    linear-gradient(rgba(249,115,22,0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249,115,22,0.13) 1px, transparent 1px);
   background-size: 68px 68px;
-  mask-image: radial-gradient(ellipse 85% 75% at 50% 38%, black 15%, transparent 72%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 38%, black 15%, transparent 72%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 38%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 38%, black 20%, transparent 75%);
   pointer-events: none;
 }
 
@@ -378,6 +390,7 @@ em { font-style: normal; color: var(--orange); }
   border-radius: var(--r);
   padding: 36px 30px 32px;
   overflow: hidden;
+  isolation: isolate;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
@@ -412,20 +425,57 @@ em { font-style: normal; color: var(--orange); }
   position: relative;
   overflow: hidden;
 }
-.service-icon::before {
+/* Decoratieve cirkels per kaart — posities gespiegeld bij aangrenzende kaarten
+   zodat ze visueel in elkaar overlopen (grid: 3 kolommen × 2 rijen)
+   Verbindingen: 1↔2, 2↔3, 4↔5, 5↔6 (horizontaal) | 1↔4, 3↔6 (verticaal) */
+.service-card::before {
   content: '';
   position: absolute;
-  border-radius: 50%;
-  background: rgba(249,115,22,0.05);
+  inset: 0;
   pointer-events: none;
+  z-index: -1;
 }
-/* Cirkel per kaartje op een andere plek */
-.services-grid .service-card:nth-child(1) .service-icon::before { right: -35px; top: -35px;    width: 140px; height: 140px; }
-.services-grid .service-card:nth-child(2) .service-icon::before { left:  -30px; bottom: -40px; width: 120px; height: 120px; }
-.services-grid .service-card:nth-child(3) .service-icon::before { left:  -20px; top: -20px;    width: 100px; height: 100px; opacity: 0.8; }
-.services-grid .service-card:nth-child(4) .service-icon::before { right: -20px; bottom: -30px; width: 130px; height: 130px; }
-.services-grid .service-card:nth-child(5) .service-icon::before { left:  50%;   top: -50px;    width: 110px; height: 110px; transform: translateX(-50%); opacity: 0.6; }
-.services-grid .service-card:nth-child(6) .service-icon::before { right: -25px; top: 50%;      width: 100px; height: 100px; transform: translateY(-50%); opacity: 0.7; }
+
+/* Rij 1 */
+/* Kaart 1: cirkel rechts midden (→ kaart 2) + cirkel onderkant (↓ kaart 4) */
+.services-grid .service-card:nth-child(1)::before {
+  background:
+    radial-gradient(circle 155px at 100% 72%, rgba(249,115,22,0.11) 0%, transparent 100%),
+    radial-gradient(circle 140px at 78% 100%, rgba(249,115,22,0.09) 0%, transparent 100%);
+}
+/* Kaart 2: cirkel links (← kaart 1) + cirkel rechts boven (→ kaart 3) */
+.services-grid .service-card:nth-child(2)::before {
+  background:
+    radial-gradient(circle 155px at 0% 72%, rgba(249,115,22,0.11) 0%, transparent 100%),
+    radial-gradient(circle 150px at 100% 32%, rgba(249,115,22,0.09) 0%, transparent 100%);
+}
+/* Kaart 3: cirkel links boven (← kaart 2) + cirkel onderkant (↓ kaart 6) */
+.services-grid .service-card:nth-child(3)::before {
+  background:
+    radial-gradient(circle 150px at 0% 32%, rgba(249,115,22,0.09) 0%, transparent 100%),
+    radial-gradient(circle 140px at 26% 100%, rgba(249,115,22,0.09) 0%, transparent 100%);
+}
+
+/* Rij 2 */
+/* Kaart 4: cirkel bovenkant (↑ kaart 1) + cirkel rechts (→ kaart 5) */
+.services-grid .service-card:nth-child(4)::before {
+  background:
+    radial-gradient(circle 140px at 78% 0%, rgba(249,115,22,0.09) 0%, transparent 100%),
+    radial-gradient(circle 150px at 100% 44%, rgba(249,115,22,0.10) 0%, transparent 100%);
+}
+/* Kaart 5: cirkel links (← kaart 4) + cirkel rechts (→ kaart 6) */
+.services-grid .service-card:nth-child(5)::before {
+  background:
+    radial-gradient(circle 150px at 0% 44%, rgba(249,115,22,0.10) 0%, transparent 100%),
+    radial-gradient(circle 150px at 100% 68%, rgba(249,115,22,0.10) 0%, transparent 100%);
+}
+/* Kaart 6: cirkel links (← kaart 5) + cirkel bovenkant (↑ kaart 3) */
+.services-grid .service-card:nth-child(6)::before {
+  background:
+    radial-gradient(circle 150px at 0% 68%, rgba(249,115,22,0.10) 0%, transparent 100%),
+    radial-gradient(circle 140px at 26% 0%, rgba(249,115,22,0.09) 0%, transparent 100%);
+}
+
 .service-icon svg {
   width: 56px;
   height: 56px;
