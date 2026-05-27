@@ -415,14 +415,17 @@ em { font-style: normal; color: var(--orange); }
 .service-icon::before {
   content: '';
   position: absolute;
-  right: -40px;
-  top: -40px;
-  width: 150px;
-  height: 150px;
   border-radius: 50%;
-  background: rgba(249,115,22,0.04);
+  background: rgba(249,115,22,0.05);
   pointer-events: none;
 }
+/* Cirkel per kaartje op een andere plek */
+.services-grid .service-card:nth-child(1) .service-icon::before { right: -35px; top: -35px;    width: 140px; height: 140px; }
+.services-grid .service-card:nth-child(2) .service-icon::before { left:  -30px; bottom: -40px; width: 120px; height: 120px; }
+.services-grid .service-card:nth-child(3) .service-icon::before { left:  -20px; top: -20px;    width: 100px; height: 100px; opacity: 0.8; }
+.services-grid .service-card:nth-child(4) .service-icon::before { right: -20px; bottom: -30px; width: 130px; height: 130px; }
+.services-grid .service-card:nth-child(5) .service-icon::before { left:  50%;   top: -50px;    width: 110px; height: 110px; transform: translateX(-50%); opacity: 0.6; }
+.services-grid .service-card:nth-child(6) .service-icon::before { right: -25px; top: 50%;      width: 100px; height: 100px; transform: translateY(-50%); opacity: 0.7; }
 .service-icon svg {
   width: 56px;
   height: 56px;
