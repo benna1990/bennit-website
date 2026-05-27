@@ -130,12 +130,23 @@ em { font-style: normal; color: var(--orange); }
 }
 
 .logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
 }
 .logo span { color: var(--orange); }
+.logo-tagline {
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1;
+}
 .footer-logo { font-size: 1.2rem; }
 
 .nav-links {
