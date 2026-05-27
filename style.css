@@ -386,12 +386,35 @@ em { font-style: normal; color: var(--orange); }
 .service-card:hover::after { opacity: 1; }
 
 .service-icon {
-  width: 44px;
-  height: 44px;
+  width: calc(100% + 60px);
+  margin: -36px -30px 28px;
+  height: 116px;
+  background: linear-gradient(145deg, rgba(249,115,22,0.09) 0%, rgba(249,115,22,0.02) 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--orange);
-  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
 }
-.service-icon svg { width: 100%; height: 100%; }
+.service-icon::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(249,115,22,0.04);
+  pointer-events: none;
+}
+.service-icon svg {
+  width: 56px;
+  height: 56px;
+  position: relative;
+  z-index: 1;
+}
 
 .service-card h3 {
   font-size: 1.05rem;
@@ -1018,10 +1041,44 @@ em { font-style: normal; color: var(--orange); }
 .btn-full { width: 100%; text-align: center; }
 
 .about-bio { margin-top: 72px; padding-top: 64px; border-top: 1px solid var(--border); }
-.about-bio-inner { display: grid; grid-template-columns: 1fr 260px; gap: 48px; align-items: start; }
+.about-bio-inner { display: grid; grid-template-columns: 200px 1fr 260px; gap: 48px; align-items: start; }
 .about-bio-text .section-tag { margin-bottom: 16px; }
 .about-bio-text h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white); margin: 0 0 16px; }
 .about-bio-text p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+
+/* Bio photo */
+.bio-photo {
+  width: 200px;
+  height: 240px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(249,115,22,0.25);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  position: relative;
+}
+.bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bio-photo-initials {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--orange);
+  opacity: 0.6;
+  line-height: 1;
+}
+.bio-photo-hint {
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 0 12px;
+  line-height: 1.5;
+  opacity: 0.6;
+}
 .about-bio-facts { display: flex; flex-direction: column; gap: 12px; }
 .bio-fact { background: var(--charcoal); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
 .bio-fact-label { display: block; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 4px; }
@@ -1029,8 +1086,41 @@ em { font-style: normal; color: var(--orange); }
 
 /* Case studies grid */
 .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.case-card { background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; transition: border-color 0.2s; }
+.case-card { background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; transition: border-color 0.2s; overflow: hidden; }
 .case-card:hover { border-color: rgba(249,115,22,0.5); }
+
+/* Case visual header */
+.case-visual {
+  width: calc(100% + 64px);
+  margin: -28px -32px 24px;
+  height: 100px;
+  border-radius: 14px 14px 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.case-visual::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.05;
+  pointer-events: none;
+}
+.case-visual svg { width: 44px; height: 44px; flex-shrink: 0; position: relative; z-index: 1; }
+.case-visual-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: 1; opacity: 0.75; }
+.case-visual.cv-smart { background: linear-gradient(145deg, #162216, #0f1a10); color: #4ade80; }
+.case-visual.cv-net   { background: linear-gradient(145deg, #141a2e, #0f1220); color: #60a5fa; }
+.case-visual.cv-nas   { background: linear-gradient(145deg, #2a1c12, #1c140d); color: #fb923c; }
+.case-visual.cv-cam   { background: linear-gradient(145deg, #1c1428, #14101c); color: #c084fc; }
+
 .case-tag { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 12px; }
 .case-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.4; }
 .case-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px; }
@@ -1101,6 +1191,7 @@ em { font-style: normal; color: var(--orange); }
   .cta-actions { flex-direction: column; align-items: center; }
   .cta-actions .btn { width: 100%; max-width: 320px; }
   .about-bio-inner { grid-template-columns: 1fr; }
+  .bio-photo { width: 140px; height: 168px; margin: 0 auto; }
   .cases-grid { grid-template-columns: 1fr; }
   .care-features { grid-template-columns: 1fr; }
 }
