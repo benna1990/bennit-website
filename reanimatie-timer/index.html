@@ -270,7 +270,62 @@
       .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .hero-meta { flex-direction: column; gap: 10px; }
+      .lf-row { grid-template-columns: 1fr; }
     }
+
+    /* LICENTIEVERZOEK FORMULIER */
+    .license-form-wrap { max-width: 640px; margin: 0 auto; }
+    .license-form { display: flex; flex-direction: column; gap: 20px; }
+    .lf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .lf-group { display: flex; flex-direction: column; gap: 8px; }
+    .lf-group label { font-size: 0.82rem; font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
+    .lf-required { color: var(--red); }
+    .lf-group input,
+    .lf-group textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.92rem;
+      padding: 12px 16px;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+      resize: vertical;
+    }
+    .lf-group input::placeholder,
+    .lf-group textarea::placeholder { color: var(--muted); }
+    .lf-group input:focus,
+    .lf-group textarea:focus { border-color: rgba(239,68,68,0.5); }
+    .lf-group input.invalid,
+    .lf-group textarea.invalid { border-color: var(--red); }
+    .lf-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--red); color: #fff;
+      border: none; border-radius: var(--r-sm);
+      font-family: var(--font); font-size: 0.95rem; font-weight: 700;
+      padding: 14px 28px; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+    .lf-btn:hover:not(:disabled) { background: var(--red-d); transform: translateY(-1px); }
+    .lf-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .lf-btn-loader svg { animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .lf-error {
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+      color: var(--red); border-radius: var(--r-sm);
+      padding: 12px 16px; font-size: 0.88rem;
+    }
+    .lf-success {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 16px; text-align: center; padding: 48px 32px;
+      background: var(--surface); border: 1px solid rgba(239,68,68,0.2);
+      border-radius: var(--r);
+    }
+    .lf-success svg { width: 48px; height: 48px; color: var(--green); stroke: var(--green); }
+    .lf-success p { font-size: 1rem; color: var(--white); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -648,6 +703,52 @@
     </div>
   </section>
 
+  <!-- LICENTIEVERZOEK FORMULIER -->
+  <section class="section" id="licentie">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag orange">Licentie aanvragen</div>
+        <h2 class="section-title">Onbeperkt gebruik<br>voor jouw organisatie.</h2>
+        <p class="section-sub">Vul het formulier in en we nemen contact op met de mogelijkheden en prijs voor jouw korps of organisatie.</p>
+      </div>
+
+      <div class="license-form-wrap reveal">
+        <form class="license-form" id="licenseForm" novalidate>
+          <div class="lf-row">
+            <div class="lf-group">
+              <label for="org_name">Organisatienaam <span class="lf-required">*</span></label>
+              <input type="text" id="org_name" name="org_name" placeholder="Bijv. Brandweer Amsterdam-Amstelland" required>
+            </div>
+            <div class="lf-group">
+              <label for="contact_name">Uw naam</label>
+              <input type="text" id="contact_name" name="contact_name" placeholder="Optioneel">
+            </div>
+          </div>
+          <div class="lf-group">
+            <label for="lic_email">E-mailadres <span class="lf-required">*</span></label>
+            <input type="email" id="lic_email" name="email" placeholder="uw@organisatie.nl" required>
+          </div>
+          <div class="lf-group">
+            <label for="message">Bericht / toelichting</label>
+            <textarea id="message" name="message" rows="4" placeholder="Bijv. aantal gebruikers, type inzet..."></textarea>
+          </div>
+          <div class="lf-error" id="lfError" style="display:none;"></div>
+          <button type="submit" class="lf-btn" id="lfSubmit">
+            <span class="lf-btn-text">Licentie aanvragen</span>
+            <span class="lf-btn-loader" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+              Versturen...
+            </span>
+          </button>
+        </form>
+        <div class="lf-success" id="lfSuccess" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+          <p>Bedankt! Uw verzoek is ontvangen. U ontvangt een bevestiging per e-mail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- DOWNLOAD CTA -->
   <section class="download-section">
     <div class="download-orb"></div>
@@ -705,6 +806,84 @@
         if (!t) return; e.preventDefault();
         t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
+    });
+  </script>
+
+  <script>
+    // Licentieverzoek formulier — Supabase integratie
+    const SUPABASE_URL   = 'https://ndxojnoctdsjcexpnuee.supabase.co';
+    const SUPABASE_KEY   = 'sb_publishable_KMpMEv6I9jg1P0KAc0C1rg_hkdLYVsp';
+    const EDGE_FN_URL    = SUPABASE_URL + '/functions/v1/notify-new-request';
+
+    const form     = document.getElementById('licenseForm');
+    const btnText  = document.querySelector('.lf-btn-text');
+    const btnLoader= document.querySelector('.lf-btn-loader');
+    const btn      = document.getElementById('lfSubmit');
+    const errBox   = document.getElementById('lfError');
+    const success  = document.getElementById('lfSuccess');
+
+    function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Client-side validatie
+      const orgName  = form.org_name.value.trim();
+      const contactName = form.contact_name.value.trim();
+      const email    = form.lic_email.value.trim();
+      const message  = form.message.value.trim();
+
+      let valid = true;
+      [form.org_name, form.lic_email].forEach(f => f.classList.remove('invalid'));
+      errBox.style.display = 'none';
+
+      if (!orgName) { form.org_name.classList.add('invalid'); valid = false; }
+      if (!email || !validateEmail(email)) { form.lic_email.classList.add('invalid'); valid = false; }
+      if (!valid) {
+        errBox.textContent = 'Vul de verplichte velden correct in.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      // Laadstatus
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoader.style.display = 'flex';
+
+      const record = { org_name: orgName, email };
+      if (contactName) record.contact_name = contactName;
+      if (message)     record.message = message;
+
+      try {
+        // Stap 1 + 2 parallel
+        await Promise.all([
+          fetch(SUPABASE_URL + '/rest/v1/license_requests', {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(record)
+          }).then(r => { if (!r.ok) throw new Error('db'); }),
+          fetch(EDGE_FN_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ record })
+          }).catch(() => {}) // Edge Function fout is niet blokkerend
+        ]);
+
+        form.style.display = 'none';
+        success.style.display = 'flex';
+
+      } catch {
+        errBox.textContent = 'Er is iets misgegaan. Probeer het opnieuw of mail naar licenties@bennit.nl.';
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+      }
     });
   </script>
 </body>
