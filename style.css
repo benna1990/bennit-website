@@ -497,6 +497,8 @@ em { font-style: normal; color: var(--orange); }
   margin-bottom: 24px;
 }
 
+.service-card { cursor: pointer; }
+
 .service-link {
   font-size: 0.82rem;
   font-weight: 600;
@@ -506,7 +508,15 @@ em { font-style: normal; color: var(--orange); }
   gap: 5px;
   transition: gap 0.2s ease;
 }
-.service-link:hover { gap: 9px; }
+/* Strek de link uit over de hele kaart — .service-card is de positioned parent */
+.service-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.service-link:hover,
+.service-card:hover .service-link { gap: 9px; }
 
 /* ═══════════════════ WHY ════════════════════════════ */
 .why-section { background: var(--charcoal); }
