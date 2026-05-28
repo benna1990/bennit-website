@@ -2,58 +2,183 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/img/reanimatie-timer-icon.jpg">
 
   <!-- SEO: primary -->
-  <title>Reanimatie Timer — CPR-app voor Brandweer, BHV & EHBO | App Store</title>
-  <meta name="description" content="Reanimatie Timer: professionele CPR-app voor brandweer, BHV, EHBO en ambulancezorg. Automatisch tijdbeheer, sets, schokken en gesproken meldingen. Ontwikkeld door een actieve brandweerman.">
-  <meta name="keywords" content="reanimatie timer app, CPR app brandweer, BHV reanimatie, EHBO app, reanimatie hulpmiddel, AED timer, ambulancezorg app, iOS app reanimatie">
-  <meta name="author" content="BennIT — Benjamin Ootjers">
-  <meta name="robots" content="index, follow">
+  <title>Reanimatie Timer — Gratis CPR-app voor Brandweer, BHV &amp; EHBO | iPhone &amp; iPad</title>
+  <meta name="description" content="Download Reanimatie Timer gratis voor iPhone en iPad. Professionele CPR-app met automatisch tijdbeheer, sets, schokken bijhouden en gesproken meldingen. Ontwikkeld door een actieve brandweerman.">
+  <meta name="keywords" content="reanimatie timer app, CPR app brandweer, BHV reanimatie, EHBO app, reanimatie hulpmiddel, AED timer, ambulancezorg app, iOS app reanimatie, gratis CPR timer, iPhone reanimatie app, iPad reanimatie">
+  <meta name="author" content="Benjamin Ootjers — BennIT">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#EF4444">
   <link rel="canonical" href="https://bennit.nl/reanimatie-timer/">
+
+  <!-- Hreflang / taal -->
+  <link rel="alternate" hreflang="nl" href="https://bennit.nl/reanimatie-timer/">
+  <link rel="alternate" hreflang="x-default" href="https://bennit.nl/reanimatie-timer/">
+
+  <!-- Geo -->
+  <meta name="geo.region" content="NL">
+  <meta name="geo.placename" content="Nederland">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bennit.nl/reanimatie-timer/">
   <meta property="og:locale" content="nl_NL">
   <meta property="og:site_name" content="BennIT">
-  <meta property="og:title" content="Reanimatie Timer — CPR-app voor Brandweer, BHV & EHBO">
-  <meta property="og:description" content="Automatisch tijdbeheer, sets, schokken en gesproken meldingen zodat jij je kunt focussen op de patiënt. Ontwikkeld door een actieve brandweerman.">
+  <meta property="og:title" content="Reanimatie Timer — Gratis CPR-app voor Brandweer, BHV &amp; EHBO">
+  <meta property="og:description" content="Download gratis voor iPhone en iPad. Automatisch tijdbeheer, sets, schokken en gesproken meldingen — zodat jij je kunt focussen op de patiënt. Ontwikkeld door een actieve brandweerman.">
+  <meta property="og:image" content="https://bennit.nl/assets/img/reanimatie-timer-icon.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Reanimatie Timer — CPR-app icoon">
 
   <!-- Twitter/X card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Reanimatie Timer — CPR-app voor Brandweer, BHV & EHBO">
-  <meta name="twitter:description" content="Professionele reanimatie-app voor brandweer, BHV, EHBO en ambulancezorg. Automatisch tijdbeheer en gesproken meldingen.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reanimatie Timer — Gratis CPR-app voor Brandweer, BHV &amp; EHBO">
+  <meta name="twitter:description" content="Professionele reanimatie-app voor brandweer, BHV, EHBO en ambulancezorg. Gratis te downloaden voor iPhone en iPad.">
+  <meta name="twitter:image" content="https://bennit.nl/assets/img/reanimatie-timer-icon.jpg">
 
-  <!-- Structured data: SoftwareApplication -->
+  <!-- Structured data: SoftwareApplication + MobileApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": ["SoftwareApplication", "MobileApplication"],
     "name": "Reanimatie Timer",
-    "description": "Professionele CPR-timer app voor brandweer, BHV, EHBO en ambulancezorg. Automatisch tijdbeheer, sets, schokken bijhouden en gesproken meldingen.",
+    "alternateName": "ReanimatieTimer CPR App",
+    "description": "Professionele CPR-timer app voor brandweer, BHV, EHBO en ambulancezorg. Automatisch tijdbeheer, sets bijhouden, schokken registreren en gesproken meldingen. Volledig gratis te downloaden voor iPhone en iPad.",
     "applicationCategory": "MedicalApplication",
-    "operatingSystem": "iOS",
+    "applicationSubCategory": "CPR & Reanimatie",
+    "operatingSystem": "iOS 17.5 of hoger",
     "url": "https://bennit.nl/reanimatie-timer/",
     "downloadUrl": "https://apps.apple.com/nl/app/reanimatie-timer/id6740523358",
+    "inLanguage": "nl-NL",
+    "isAccessibleForFree": true,
+    "image": "https://bennit.nl/assets/img/reanimatie-timer-icon.jpg",
+    "thumbnailUrl": "https://bennit.nl/assets/img/reanimatie-timer-icon.jpg",
+    "featureList": [
+      "Automatische reanimatie-timer met totale tijd en set-tijd",
+      "Registratie van schokken met tijdstempel en set-nummer",
+      "Automatische sets en cycli",
+      "Gesproken meldingen bij wisselmomenten en ritmecontroles",
+      "Overzichtelijk logboek voor overdracht en nabespreking",
+      "Instelbare metronoom 100–110 BPM",
+      "Volledig offline — geen data verzameld of opgeslagen",
+      "Grote knoppen — bedienbaar met handschoenen"
+    ],
     "author": {
+      "@type": "Person",
+      "name": "Benjamin Ootjers",
+      "jobTitle": "iOS Developer & Actief brandweerman",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "BennIT",
+        "url": "https://bennit.nl"
+      }
+    },
+    "publisher": {
       "@type": "Organization",
       "name": "BennIT",
-      "url": "https://bennit.nl"
-    },
-    "offers": [
-      {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "EUR",
-        "description": "Gratis — 3 volledige reanimaties per jaar"
+      "url": "https://bennit.nl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://bennit.nl/assets/img/logo-light.svg"
       }
-    ],
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "https://apps.apple.com/nl/app/reanimatie-timer/id6740523358",
+      "description": "Gratis — 3 volledige reanimaties per jaar. Licentie voor onbeperkt gebruik beschikbaar."
+    },
     "audience": {
       "@type": "Audience",
-      "audienceType": "Brandweer, BHV, EHBO, Ambulancezorg, Opleidingen"
+      "audienceType": "Brandweer, BHV-organisaties, EHBO-verenigingen, Ambulancezorg, Reanimatie-opleidingen"
     }
+  }
+  </script>
+
+  <!-- Structured data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is de Reanimatie Timer app gratis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, de app is gratis te downloaden in de Apple App Store. Je kunt de app gratis gebruiken voor 3 volledige reanimaties per jaar — alle functies inbegrepen. Voor organisaties of frequent gebruik is een licentie beschikbaar voor onbeperkt gebruik."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Voor wie is de Reanimatie Timer geschikt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De app is ontworpen voor professionele hulpverleners: brandweer, BHV-organisaties, EHBO-verenigingen, ambulancezorg en reanimatie-opleidingen. De app is ook uitstekend geschikt voor oefenavonden, trainingen en examens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werkt de Reanimatie Timer zonder internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, de Reanimatie Timer werkt volledig offline. Er wordt geen data opgeslagen of verzonden. De app werkt onafhankelijk van een internetverbinding — ook op de inzetvloer zonder bereik."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Op welke apparaten werkt de app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De Reanimatie Timer is beschikbaar voor iPhone en iPad met iOS 17.5 of hoger. De app is gratis te downloaden via de Apple App Store."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe vraag ik een licentie aan voor mijn korps of organisatie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vul het licentieverzoekformulier in onderaan de pagina op bennit.nl/reanimatie-timer/ of mail naar licenties@bennit.nl. We nemen contact op met de mogelijkheden en prijs voor jouw korps of organisatie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat doet de Reanimatie Timer precies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De app biedt: automatische tijdregistratie van de totale reanimatietijd én set-tijd, registratie van schokken met tijdstempel en set-nummer, gesproken meldingen bij wisselmomenten en ritmecontroles, een instelbare metronoom (100–110 BPM), en een overzichtelijk logboek voor overdracht aan ambulance of nabespreking."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "BennIT",
+        "item": "https://bennit.nl/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Reanimatie Timer",
+        "item": "https://bennit.nl/reanimatie-timer/"
+      }
+    ]
   }
   </script>
 
@@ -326,6 +451,26 @@
     }
     .lf-success svg { width: 48px; height: 48px; color: var(--green); stroke: var(--green); }
     .lf-success p { font-size: 1rem; color: var(--white); line-height: 1.6; }
+
+    /* FAQ */
+    .faq-section { background: var(--charcoal); }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; max-width: 720px; margin: 0 auto; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: rgba(239,68,68,0.25); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 24px; cursor: pointer; list-style: none;
+      font-weight: 600; font-size: 0.95rem; color: var(--white);
+      transition: color 0.2s;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q::marker { display: none; }
+    .faq-q:hover { color: var(--red); }
+    .faq-chevron { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.25s; color: var(--muted); }
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a { padding: 0 24px 20px; font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+    .faq-a a { color: var(--red); }
+    .faq-a strong { color: var(--white); }
   </style>
 </head>
 <body>
@@ -343,6 +488,8 @@
       </a>
     </div>
   </nav>
+
+  <main>
 
   <!-- HERO -->
   <section class="hero">
@@ -749,6 +896,67 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag">Veelgestelde vragen</div>
+        <h2 class="section-title">Alles wat je wilt weten.</h2>
+      </div>
+      <div class="faq-list">
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Is de Reanimatie Timer app gratis?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">Ja, de app is gratis te downloaden in de App Store. Je kunt de app gratis gebruiken voor <strong>3 volledige reanimaties per jaar</strong> — alle functies inbegrepen. Voor organisaties of frequent gebruik is een licentie beschikbaar voor onbeperkt gebruik.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Wat doet de Reanimatie Timer precies?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">De app biedt: automatische tijdregistratie van de totale reanimatietijd én de actuele set-tijd, registratie van schokken met tijdstempel en set-nummer, gesproken meldingen bij wisselmomenten en ritmecontroles, een instelbare metronoom (100–110 BPM), en een overzichtelijk logboek voor overdracht aan ambulance of nabespreking.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Voor wie is de app geschikt?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">De app is ontworpen voor professionele hulpverleners: <strong>brandweer</strong>, <strong>BHV-organisaties</strong>, <strong>EHBO-verenigingen</strong>, <strong>ambulancezorg</strong> en reanimatie-opleidingen. Ook uitstekend geschikt voor oefenavonden, trainingen en examens.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Werkt de app zonder internet?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">Ja, volledig offline. Er wordt geen data opgeslagen of verzonden en er is geen account nodig. De app werkt onafhankelijk van een internetverbinding — ook op de inzetvloer zonder bereik.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Op welke apparaten werkt de app?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">De Reanimatie Timer is beschikbaar voor <strong>iPhone en iPad</strong> met iOS 17.5 of hoger. Download gratis via de Apple App Store — 10,4 MB, geen account vereist.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            Hoe vraag ik een licentie aan voor mijn organisatie?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-a">Vul het <a href="#licentie">licentieverzoekformulier</a> in onderaan deze pagina, of mail naar <a href="mailto:licenties@bennit.nl">licenties@bennit.nl</a>. We nemen contact op met de mogelijkheden en prijs voor jouw korps of organisatie.</div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
   <!-- DOWNLOAD CTA -->
   <section class="download-section">
     <div class="download-orb"></div>
@@ -778,6 +986,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
