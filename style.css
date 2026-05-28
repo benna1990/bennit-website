@@ -1159,7 +1159,9 @@ em { font-style: normal; color: var(--orange); }
 }
 .btn-full { width: 100%; text-align: center; }
 
-.about-bio { margin-top: 72px; padding-top: 64px; border-top: 1px solid var(--border); }
+.about-bio { }
+.bio-section { background: var(--black); padding-bottom: 56px; }
+#werkwijze { padding-top: 72px; }
 .about-bio-inner { display: grid; grid-template-columns: 200px 1fr 260px; gap: 48px; align-items: start; }
 .about-bio-text .section-tag { margin-bottom: 16px; }
 .about-bio-text h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white); margin: 0 0 16px; }
