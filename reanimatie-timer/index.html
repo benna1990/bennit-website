@@ -476,6 +476,14 @@
     .hero-app-name { font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 800; letter-spacing: -0.04em; color: var(--white); margin-bottom: 14px; }
     .hero-app-name em { color: var(--red); font-style: normal; }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
 </head>
 <body>
 
@@ -501,7 +509,7 @@
     <div class="hero-glow"></div>
     <div class="container">
       <div class="hero-content">
-        <img src="../assets/img/reanimatie-timer-icon.jpg" alt="Reanimatie Timer app icoon" class="app-icon">
+        <picture><source srcset="../assets/img/reanimatie-timer-icon.webp" type="image/webp"><img src="../assets/img/reanimatie-timer-icon.jpg" alt="Reanimatie Timer app icoon" class="app-icon" loading="lazy"></picture>
         <div class="hero-audience">
           <span class="audience-tag">Brandweer</span>
           <span class="audience-tag">BHV</span>

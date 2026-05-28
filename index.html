@@ -64,6 +64,7 @@
       "name": "KvK-nummer",
       "value": "61334286"
     },
+    "vatID": "NL002200567B42",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "IT & Tech Diensten",
@@ -139,6 +140,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=20260528">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
 </head>
 <body>
 
@@ -408,7 +418,7 @@
       <div class="about-bio reveal">
         <div class="about-bio-inner">
           <div class="bio-photo" id="bioPhoto">
-            <img src="assets/img/benjamin-ootjers.jpg" alt="Benjamin Ootjers — BennIT">
+            <picture><source srcset="assets/img/benjamin-ootjers.webp" type="image/webp"><img src="assets/img/benjamin-ootjers.jpg" alt="Benjamin Ootjers — BennIT" loading="lazy"></picture>
           </div>
           <div class="about-bio-text">
             <div class="section-tag">Over mij</div>
@@ -437,6 +447,44 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ REVIEWS ══════════════════════════════════ -->
+  <!-- ══ Vul hieronder de echte Google reviews in (naam + sterren + tekst) ══ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Wat klanten zeggen</div>
+        <h2 class="section-title">Eerlijk &<br>transparant.</h2>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text"><!-- VULL IN: tekst van Google review 1 -->"Vul hier de tekst van de eerste Google review in."</p>
+          <div class="review-author">
+            <div class="review-avatar"><!-- initialen --></div>
+            <div>
+              <div class="review-name"><!-- Naam reviewer --></div>
+              <div class="review-source">Google Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text"><!-- VULL IN: tekst van Google review 2 -->"Vul hier de tekst van de tweede Google review in."</p>
+          <div class="review-author">
+            <div class="review-avatar"><!-- initialen --></div>
+            <div>
+              <div class="review-name"><!-- Naam reviewer --></div>
+              <div class="review-source">Google Review</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -687,6 +735,7 @@
               <textarea id="bericht" name="bericht" rows="4" placeholder="Vertel ons over jouw vraag of project..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Verstuur bericht</button>
+            <p class="form-privacy">Door dit formulier te versturen ga je akkoord met ons <a href="/privacy-policy/">privacybeleid</a>.</p>
             <div class="form-success" id="formSuccess">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Bedankt! We nemen zo snel mogelijk contact op.
@@ -704,7 +753,7 @@
       <div class="footer-brand">
         <a href="#" class="logo footer-logo"><img src="/assets/img/logo-light.svg" alt="BennIT" class="logo-img footer-logo-img"></a>
         <p>Slimme techniek, simpel gemaakt.</p>
-        <p class="footer-meta">Diemen, Noord-Holland &middot; KvK: 61334286</p>
+        <p class="footer-meta">Diemen, Noord-Holland &middot; KvK: 61334286 &middot; BTW: NL002200567B42</p>
       </div>
       <div class="footer-nav">
         <div class="footer-col">

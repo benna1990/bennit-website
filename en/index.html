@@ -54,7 +54,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style.css?v=20260528">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
 </head>
 <body>
 
@@ -216,40 +224,17 @@
   <section class="section" id="cases" style="padding-top: 0;">
     <div class="container">
       <div class="section-header reveal">
-        <div class="section-tag">Example projects</div>
-        <h2 class="section-title">What we've<br>built.</h2>
-        <p class="section-sub">A selection of recent projects — from smart home automation to professional wifi infrastructure.</p>
+        <div class="section-tag">Own product</div>
+        <h2 class="section-title">Built from<br>experience.</h2>
+        <p class="section-sub">Besides client work, I also build my own software. The Reanimatie Timer is the best example of that.</p>
       </div>
-      <div class="cases-grid">
-
-        <div class="case-card reveal">
-          <div class="case-tag">Smart Home · Diemen</div>
-          <h3>Home Assistant automation in an apartment</h3>
-          <p>Complete Home Assistant installation with Zigbee network, presence detection, smart lighting and an energy management dashboard on the P1 meter.</p>
-          <span class="case-result">Fully automated · insight into energy consumption</span>
-        </div>
-
-        <div class="case-card reveal">
-          <div class="case-tag">Networking · Amsterdam</div>
-          <h3>UniFi wifi installation in a terraced house</h3>
-          <p>Two UniFi access points with CAT6 cabling and a central management interface. No more wifi drops during video calls and working from home.</p>
-          <span class="case-result">Full coverage · stable in all rooms</span>
-        </div>
-
-        <div class="case-card reveal">
-          <div class="case-tag">NAS & Backup · Amstelveen</div>
-          <h3>Synology NAS for a freelancer</h3>
-          <p>Synology NAS with RAID, automatic backup of workstation and encrypted offsite cloud backup. Never worry about data loss again.</p>
-          <span class="case-result">Safe and fully automated</span>
-        </div>
-
-        <div class="case-card reveal">
-          <div class="case-tag">Security · Weesp</div>
-          <h3>IP camera system for a hospitality venue</h3>
-          <p>8 IP cameras, central NVR storage and remote viewing via smartphone. Installed in one day, no monthly subscription needed.</p>
-          <span class="case-result">24/7 overview · also remotely</span>
-        </div>
-
+      <div style="max-width: 560px; margin: 0 auto;">
+        <a href="../reanimatie-timer/" class="case-card reveal" style="display:block;text-decoration:none;color:inherit;">
+          <div class="case-tag">App Development · Diemen</div>
+          <h3>ReanimatieTimer — CPR timer app</h3>
+          <p>iOS app built for firefighters and first responders: automatic CPR timing, shock registration, spoken notifications and a handover log. Free in the App Store.</p>
+          <span class="case-result">Used by fire services · free in App Store</span>
+        </a>
       </div>
     </div>
   </section>
@@ -299,7 +284,7 @@
       <div class="about-bio reveal">
         <div class="about-bio-inner">
           <div class="bio-photo" id="bioPhoto">
-            <img src="../assets/img/benjamin-ootjers.jpg" alt="Benjamin Ootjers — BennIT" onerror="this.style.display='none'">
+            <picture><source srcset="../assets/img/benjamin-ootjers.webp" type="image/webp"><img src="../assets/img/benjamin-ootjers.jpg" alt="Benjamin Ootjers — BennIT" loading="lazy" onerror="this.style.display='none'"></picture>
             <span class="bio-photo-initials">BO</span>
             <span class="bio-photo-hint">Add your photo as<br>assets/img/benjamin-ootjers.jpg</span>
           </div>
@@ -569,6 +554,7 @@
               <textarea id="bericht" name="bericht" rows="4" placeholder="Tell us about your question or project..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Send message</button>
+            <p class="form-privacy">By submitting this form you agree to our <a href="../privacy-policy/">privacy policy</a>.</p>
             <div class="form-success" id="formSuccess">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Thank you! We'll get back to you as soon as possible.
@@ -586,7 +572,7 @@
       <div class="footer-brand">
         <a href="../" class="logo footer-logo"><img src="../assets/img/logo-light.svg" alt="BennIT" class="logo-img footer-logo-img"></a>
         <p>Smart tech, made simple.</p>
-        <p class="footer-meta">Diemen, Noord-Holland &middot; KvK: 61334286</p>
+        <p class="footer-meta">Diemen, Noord-Holland &middot; KvK: 61334286 &middot; BTW: NL002200567B42</p>
       </div>
       <div class="footer-nav">
         <div class="footer-col">

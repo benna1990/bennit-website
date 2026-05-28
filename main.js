@@ -77,6 +77,10 @@ if (form) {
         form.reset();
         success.classList.add('show');
         submitBtn.textContent = 'Verstuurd ✓';
+        // GA4 conversie — contactformulier verstuurd
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'generate_lead', { event_category: 'contact' });
+        }
       } else {
         throw new Error('Network error');
       }
