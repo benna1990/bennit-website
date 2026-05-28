@@ -1015,7 +1015,9 @@ em { font-style: normal; color: var(--orange); }
 .page-hero-img-wrap {
   border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  align-self: stretch;
+  min-height: 340px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.45);
 }
 .page-hero-img-wrap img {
   width: 100%;
@@ -1023,17 +1025,31 @@ em { font-style: normal; color: var(--orange); }
   object-fit: cover;
   display: block;
 }
-.service-img {
-  border-radius: 14px;
+/* Full-width image banner between content and FAQ */
+.service-img-banner {
+  border-radius: 20px;
   overflow: hidden;
-  margin: 36px 0;
-  aspect-ratio: 16 / 9;
+  height: 420px;
 }
-.service-img img {
+.service-img-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* 2-column image grid (smart-home) */
+.service-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 380px;
+}
+.service-img-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
 }
 .breadcrumb {
   display: flex;
@@ -1236,7 +1252,10 @@ em { font-style: normal; color: var(--orange); }
   .service-detail-grid { grid-template-columns: 1fr; gap: 40px; }
   .sidebar-card { position: static; }
   .page-hero-content { grid-template-columns: 1fr; gap: 36px; }
-  .page-hero-img-wrap { aspect-ratio: 16 / 9; }
+  .page-hero-img-wrap { align-self: auto; min-height: auto; aspect-ratio: 16 / 9; box-shadow: none; }
+  .service-img-banner { height: 240px; border-radius: 14px; }
+  .service-img-grid { grid-template-columns: 1fr; height: auto; gap: 14px; }
+  .service-img-grid img { height: 220px; border-radius: 14px; }
 }
 
 @media (max-width: 1024px) {
