@@ -1395,6 +1395,7 @@ em { font-style: normal; color: var(--orange); }
 }
 .tarief-row:last-of-type { border-bottom: none; }
 .tarief-val { color: var(--white); font-weight: 500; }
+.tarief-btw { color: var(--muted); font-weight: 400; font-size: 0.78rem; margin-left: 2px; }
 .tarief-note {
   font-size: 0.75rem;
   color: var(--muted);
