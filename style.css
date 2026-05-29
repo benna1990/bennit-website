@@ -1356,6 +1356,54 @@ em { font-style: normal; color: var(--orange); }
    REVIEWS / TESTIMONIALS
    ═══════════════════════════════════════════════════ */
 
+/* ── Reactietijd indicator ── */
+.response-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  opacity: 0.75;
+}
+.response-time svg { color: var(--orange); flex-shrink: 0; }
+
+/* ── Tarieven kaart ── */
+.tarieven-card {
+  margin-top: 28px;
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.tarieven-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.tarief-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.tarief-row:last-of-type { border-bottom: none; }
+.tarief-val { color: var(--white); font-weight: 500; }
+.tarief-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  opacity: 0.65;
+  line-height: 1.6;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
 /* ── Compacte quote-strip (in de over-sectie) ── */
 .quotes-strip {
   display: grid;
