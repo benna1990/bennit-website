@@ -136,6 +136,7 @@ h3 { font-size: 1.2rem; letter-spacing: -.01em; }
 /* ---- foto's ---- */
 .media { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block; }
 .media--hero { aspect-ratio: 4 / 3.4; }
+.media--portrait { aspect-ratio: 1 / 1; border-radius: 10px; }
 
 /* ---- projecten (portfolio-kaarten) ---- */
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.4rem, 3vw, 2rem); }
