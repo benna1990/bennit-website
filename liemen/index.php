@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/inc/data.php'; $projects = lb_load_projects(); $featured = array_filter($projects, fn($p) => !empty($p['featured'])); ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -28,7 +29,7 @@
         </button>
         <ul id="menu" class="nav__list">
           <li><a href="#diensten">Diensten</a></li>
-          <li><a href="#projecten">Projecten</a></li>
+          <li><a href="werk.php">Projecten</a></li>
           <li><a href="#over">Over</a></li>
           <li><a href="#contact" class="btn btn--sm">Contact</a></li>
         </ul>
@@ -114,96 +115,12 @@
         </header>
 
         <div class="work-grid">
-
-          <article class="card">
-            <div class="card__media card__media--ba">
-              <figure><img src="assets/badkamer-voor.jpg" alt="Badkamer vóór de renovatie" loading="lazy" /><figcaption>Voor</figcaption></figure>
-              <figure><img src="assets/badkamer-na.jpg" alt="Badkamer na de renovatie met ledspiegel en groen tegelwerk" loading="lazy" /><figcaption>Na</figcaption></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Volledige badkamerrenovatie</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Demontage, nieuw leidingwerk, tegelwerk en afwerking — van een donkere ruimte naar een warme, lichte badkamer.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--ba">
-              <figure><img src="assets/badkamer2-voor.jpg" alt="Badkamer vóór de renovatie met zwart-wit tegelvloer" loading="lazy" /><figcaption>Voor</figcaption></figure>
-              <figure><img src="assets/badkamer2-na.jpg" alt="Luxe badkamer na de renovatie met inloopdouche en dubbele wastafel" loading="lazy" /><figcaption>Na</figcaption></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Ruime badkamer met inloopdouche</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Van een gedateerde ruimte naar een luxe badkamer met inloopdouche, dubbele wastafel en strak tegelwerk.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--ba">
-              <figure><img src="assets/toilet1-voor.jpg" alt="Toilet vóór de renovatie" loading="lazy" /><figcaption>Voor</figcaption></figure>
-              <figure><img src="assets/toilet1-na.jpg" alt="Toilet na de renovatie met betonlook-tegels" loading="lazy" /><figcaption>Na</figcaption></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Volledige toiletrenovatie</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Compleet vernieuwd, met een verlaagd plafond, inbouwspots en een plafondhoge deur.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--ba">
-              <figure><img src="assets/wand-voor.jpg" alt="Buitenmuur vóór de wandafwerking" loading="lazy" /><figcaption>Voor</figcaption></figure>
-              <figure><img src="assets/wand-na.jpg" alt="Buitenmuur na plaatsing van houtlook lamellen en wandlampen" loading="lazy" /><figcaption>Na</figcaption></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Kunststof wandafwerking buiten</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Houtlook gevelbekleding geplaatst, boeideel vernieuwd en nieuwe elektra voor de buitenspots aangelegd.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--duo">
-              <figure><img src="assets/trap-1.jpg" alt="Ruimte met trapombouw en scheidingswand" loading="lazy" /></figure>
-              <figure><img src="assets/trap-3.jpg" alt="Afgewerkte ruimte met visgraatvloer en inbouwspots" loading="lazy" /></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Scheidingswand &amp; trapombouw</h3><span class="card__tag">Zakelijk</span></div>
-              <p class="card__desc">Scheidingswand en trapombouw gerealiseerd, inclusief nieuwe stopcontacten en deuren.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--ba">
-              <figure><img src="assets/zolder-constructie.jpg" alt="Zolder met nieuwe houten draagconstructie in aanbouw" loading="lazy" /><figcaption>Voor</figcaption></figure>
-              <figure><img src="assets/zolder-afgewerkt.jpg" alt="Afgewerkte zolder met twee aparte ruimtes" loading="lazy" /><figcaption>Na</figcaption></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Complete zolderrenovatie</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Omgebouwd tot twee ruimtes: geïsoleerd, nieuwe elektra en scheidingswanden met deuren.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--single">
-              <figure><img src="assets/toilet2.jpg" alt="Gerenoveerd toilet met groen tegelwerk en zwevend toilet" loading="lazy" /></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Toiletrenovatie met tegelwerk</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Strak tegelwerk, een zwevend toilet en een terrazzovloer.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card__media card__media--single">
-              <figure><img src="assets/kapstok.jpg" alt="Hal met houten lattenwand, kapstok en ledverlichting" loading="lazy" /></figure>
-            </div>
-            <div class="card__body">
-              <div class="card__top"><h3>Kapstok &amp; lattenwand</h3><span class="card__tag">Particulier</span></div>
-              <p class="card__desc">Kapstok, lattenwand en wandplank op maat, met geïntegreerde ledverlichting.</p>
-            </div>
-          </article>
-
+<?php foreach ($featured as $p) { echo lb_render_card($p); } ?>
         </div>
 
-        <p class="muted small">Meer projecten volgen — ik vul deze pagina aan zodra nieuw werk is opgeleverd.</p>
+        <div class="work-more">
+          <a href="werk.php" class="btn">Alle projecten bekijken →</a>
+        </div>
       </div>
     </section>
 
@@ -269,7 +186,7 @@
       </div>
       <nav class="ftr__nav" aria-label="Footer">
         <a href="#diensten">Diensten</a>
-        <a href="#projecten">Projecten</a>
+        <a href="werk.php">Projecten</a>
         <a href="#over">Over</a>
         <a href="#contact">Contact</a>
       </nav>
