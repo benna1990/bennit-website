@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparantie — Reanimatie Timer | BennIT</title>
+  <meta name="description" content="Wat ziet BennIT in het dashboard van de Reanimatie Timer-app? Volledig transparant: het exacte datamodel, wat wij wél en niet zien, en een live voorbeeld.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/transparantie/">
+  <meta name="theme-color" content="#111315">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=20260529">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+
+  <style>
+    /* Nav */
+    .rt-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: background 0.3s, backdrop-filter 0.3s; }
+    .rt-nav.scrolled { background: rgba(17,19,21,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .rt-nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* Layout */
+    .tr-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .tr-hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .tr-body { max-width: 800px; padding: 48px 0 120px; }
+
+    /* Typography */
+    .tr-body h2 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 52px 0 16px; letter-spacing: -0.02em; }
+    .tr-body h2:first-child { margin-top: 0; }
+    .tr-body p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+    .tr-body a { color: var(--orange); }
+    .tr-body strong { color: var(--white); }
+    .tr-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* Demo banner */
+    .demo-banner {
+      background: rgba(249,115,22,0.08);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.82rem;
+      color: var(--orange);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .demo-banner svg { flex-shrink: 0; }
+
+    /* Data model table */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 20px 0; }
+    .data-table th { text-align: left; padding: 10px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--orange); border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    .data-table td:first-child { font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--white); white-space: nowrap; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table-wrap { background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+
+    /* Example row */
+    .example-row { background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; margin: 20px 0; }
+    .example-row table { width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: 'Courier New', monospace; }
+    .example-row th { background: rgba(249,115,22,0.08); padding: 8px 12px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--orange); font-family: var(--font); border-bottom: 1px solid var(--border); white-space: nowrap; text-align: left; font-weight: 700; }
+    .example-row td { padding: 10px 12px; color: var(--muted); white-space: nowrap; }
+    .example-row td.val { color: var(--white); }
+
+    /* Wat-niet lijst */
+    .check-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 10px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .check-list li .icon-yes { color: #22c55e; flex-shrink: 0; margin-top: 2px; }
+    .check-list li .icon-no  { color: #ef4444; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── Nep-dashboard ── */
+    .demo-wrap { background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-top: 8px; }
+    .demo-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    @media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } }
+    .kpi { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .kpi-val { font-size: 1.5rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
+    .kpi-label { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+
+    /* Daily bar chart */
+    .daily-chart { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .daily-chart-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+    .bar-row { display: flex; align-items: flex-end; gap: 2px; height: 60px; }
+    .bar-col { flex: 1; background: rgba(249,115,22,0.7); border-radius: 2px 2px 0 0; min-height: 3px; transition: background 0.2s; }
+    .bar-col:hover { background: var(--orange); }
+    .chart-dates { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--muted); margin-top: 6px; opacity: 0.6; }
+
+    /* Bar charts grid */
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 560px) { .charts-grid { grid-template-columns: 1fr; } }
+    .chart-card { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .chart-card-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 14px; }
+    .bar-item { margin-bottom: 10px; }
+    .bar-item:last-child { margin-bottom: 0; }
+    .bar-meta { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 4px; }
+    .bar-meta-label { color: var(--muted); }
+    .bar-meta-count { color: var(--muted); font-weight: 500; }
+    .bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--orange); border-radius: 3px; }
+
+    /* Provincie kaart placeholder + stad lijst */
+    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 560px) { .geo-grid { grid-template-columns: 1fr; } }
+    .prov-card { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .prov-card-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 14px; }
+    .prov-note { font-size: 0.68rem; color: var(--muted); opacity: 0.6; margin-bottom: 12px; }
+    .hidden-note { font-size: 0.68rem; color: var(--muted); opacity: 0.55; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* Privacy waarborgen blokjes */
+    .waarborgen { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    @media (max-width: 560px) { .waarborgen { grid-template-columns: 1fr; } }
+    .waarborg { background: var(--charcoal); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .waarborg-title { font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .waarborg-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* Footer */
+    .rt-footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .rt-footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+    .rt-footer-inner a { transition: color 0.2s; }
+    .rt-footer-inner a:hover { color: var(--white); }
+    .rt-footer-links { display: flex; gap: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="rt-nav scrolled" id="rtNav">
+    <div class="container">
+      <a href="../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Reanimatie Timer
+      </a>
+      <a href="../../" class="logo"><img src="../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">
+        Download gratis
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tr-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container tr-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../">BennIT</a><span>/</span>
+        <a href="../">Reanimatie Timer</a><span>/</span>
+        <span>Transparantie</span>
+      </nav>
+      <div style="margin-top: 24px;">
+        <div class="section-tag" style="margin-bottom: 16px;">Open dashboard</div>
+        <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px;">Dit zie ik.<br>Jij ook.</h1>
+        <p style="color: var(--muted); max-width: 560px; line-height: 1.8; font-size: 1rem;">
+          De app verzamelt anonieme gebruiksstatistieken. Ik vind dat je gewoon mag weten wat ik zie — niet omdat ik er mee opschep, maar omdat je het recht hebt om het te controleren. Op deze pagina staat het exacte datamodel, wat er <em>niet</em> in zit, en hoe het dashboard er in de praktijk uitziet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="tr-body">
+
+      <!-- 1. Datamodel -->
+      <h2>Wat er in de database staat</h2>
+      <p>De app stuurt bij elke opening een seintje naar de server. Dat seintje wordt <strong>niet als losse regel opgeslagen</strong> — het wordt direct opgeteld bij een bestaande rij. De tabel heet <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">app_usage_daily</code> en heeft één rij per unieke combinatie van onderstaande velden per dag.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Veld</th>
+              <th>Betekenis</th>
+              <th>Voorbeeld</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>day</td><td>Datum (UTC)</td><td style="color:var(--muted)">2026-06-03</td></tr>
+            <tr><td>app_version</td><td>App-versie</td><td style="color:var(--muted)">2.1.0</td></tr>
+            <tr><td>platform</td><td>Apparaattype</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Landcode (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Provincie</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>Plaats (zie privacydrempel ↓)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>license_state</td><td>Licentiestatus</td><td style="color:var(--muted)">trial / free / licensed</td></tr>
+            <tr><td>count</td><td>Aantal app-openingen voor deze combinatie</td><td style="color:var(--muted)">7</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px;">Zo ziet een echte rij eruit:</p>
+      <div class="example-row">
+        <table>
+          <thead>
+            <tr>
+              <th>app_version</th><th>platform</th><th>country</th><th>region</th><th>city</th><th>license_state</th><th>day</th><th>count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="val">2.1.0</td>
+              <td class="val">ios</td>
+              <td class="val">NL</td>
+              <td class="val">North Holland</td>
+              <td class="val">Amsterdam</td>
+              <td class="val">free</td>
+              <td class="val">2026-06-03</td>
+              <td class="val">7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Die <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">count: 7</code> betekent: op 3 juni 2026 werd de app 7 keer geopend door iemand (of meerdere mensen) op een iPhone in Amsterdam, gratis versie 2.1.0. Er is geen manier om te weten of dit één persoon was of zeven.</p>
+
+      <hr class="tr-divider">
+
+      <!-- 2. Wat ik NIET zie -->
+      <h2>Wat ik niet zie</h2>
+      <ul class="check-list">
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>Geen naam of e-mailadres</strong> in de statistieken. Die staan alleen in de aparte licentietabel, alleen voor organisaties met een licentie.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>Geen IP-adres.</strong> Het IP wordt alleen heel even in het geheugen gebruikt om land/provincie/plaats te bepalen, en daarna direct weggegooid. Het IP wordt nooit gelogd of bewaard.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>Geen apparaat-ID</strong> in de statistieken. Ieder seintje is anoniem; er is geen manier om twee openingen aan hetzelfde toestel te koppelen.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>Geen sessie-inhoud.</strong> Tijdsduur, sets, schokken, tijdstempels — dat blijft volledig lokaal op jouw toestel. Ik zie nooit wat je reanimatie-sessies bevatten.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>Geen exacte tijd.</strong> Alleen de datum (dag), geen tijdstip van openen.</span>
+        </li>
+      </ul>
+
+      <hr class="tr-divider">
+
+      <!-- 3. Privacy-waarborgen -->
+      <h2>Privacy-waarborgen</h2>
+      <div class="waarborgen">
+        <div class="waarborg">
+          <div class="waarborg-title">Opgeteld per dag</div>
+          <div class="waarborg-desc">Geen tijdstip per opening — alleen een dagelijks totaal per combinatie. Hoe vaak je de app op één dag opent, ziet eruit als één getal.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">Kleine-cel-onderdrukking</div>
+          <div class="waarborg-desc">Een <strong style="color: var(--white);">plaats</strong> wordt pas getoond vanaf <strong style="color: var(--white);">5 openingen</strong>. Kleinere aantallen worden alleen op provincieniveau zichtbaar. Zo is een losse gebruiker in een klein dorp nooit herleidbaar.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">Uitschakelbaar</div>
+          <div class="waarborg-desc">Je kunt dit volledig uitzetten via <strong style="color: var(--white);">Instellingen → Privacy</strong> in de app. Dan stuurt de app helemaal niets.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">Geen dev-builds</div>
+          <div class="waarborg-desc">Ontwikkel- en TestFlight-builds sturen niets. Alleen de App Store-versie stuurt statistieken, zodat testdata de cijfers niet vertroebelt.</div>
+        </div>
+      </div>
+
+      <hr class="tr-divider">
+
+      <!-- 4. Hoe het dashboard eruitziet -->
+      <h2>Zo ziet mijn dashboard eruit</h2>
+      <p>Onderstaande weergave is gevuld met <strong>voorbeeldcijfers</strong> — niet de echte data. De opmaak, de velden en de privacydrempel zijn identiek aan het echte dashboard.</p>
+
+      <div class="demo-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Voorbeelddata — niet de echte cijfers. Structuur en opmaak zijn identiek aan het echte dashboard.
+      </div>
+
+      <div class="demo-wrap">
+        <div class="demo-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Gebruiksstatistieken · laatste 90 dagen · volledig anoniem en geaggregeerd
+        </div>
+
+        <!-- KPI's -->
+        <div class="kpi-grid">
+          <div class="kpi"><div class="kpi-val">1.847</div><div class="kpi-label">App-opens (totaal)</div></div>
+          <div class="kpi"><div class="kpi-val">74</div><div class="kpi-label">Actieve dagen</div></div>
+          <div class="kpi"><div class="kpi-val">8</div><div class="kpi-label">Landen</div></div>
+          <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">App-versies</div></div>
+        </div>
+
+        <!-- Dagelijks staafdiagram -->
+        <div class="daily-chart">
+          <div class="daily-chart-title">Per dag (laatste 30 dagen) · 623 opens</div>
+          <div class="bar-row" id="dailyBars"></div>
+          <div class="chart-dates"><span>5 mei</span><span>3 jun</span></div>
+        </div>
+
+        <!-- Bar charts -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-title">Per licentiestatus</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">free</span><span class="bar-meta-count">1.102</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">trial</span><span class="bar-meta-count">498</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">licensed</span><span class="bar-meta-count">247</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">Per app-versie</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">2.1.0</span><span class="bar-meta-count">1.431</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">2.0.3</span><span class="bar-meta-count">318</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">1.9.2</span><span class="bar-meta-count">98</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:7%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">Per land</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">NL</span><span class="bar-meta-count">1.563</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">BE</span><span class="bar-meta-count">142</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">DE</span><span class="bar-meta-count">87</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:5.5%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">overig</span><span class="bar-meta-count">55</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:3.5%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">Per provincie (NL)</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Noord-Holland</span><span class="bar-meta-count">487</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Zuid-Holland</span><span class="bar-meta-count">341</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Noord-Brabant</span><span class="bar-meta-count">218</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Gelderland</span><span class="bar-meta-count">164</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:34%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">overig</span><span class="bar-meta-count">353</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steden met privacy-drempel -->
+        <div class="prov-card">
+          <div class="prov-card-title">Per plaats (NL) — privacydrempel</div>
+          <div class="prov-note">Alleen plaatsen met ≥ 5 opens worden bij naam getoond. Kleinere aantallen tellen mee in de provinciescore maar zijn niet herleidbaar naar een individu.</div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Amsterdam</span><span class="bar-meta-count">203</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Rotterdam</span><span class="bar-meta-count">148</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:73%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Den Haag</span><span class="bar-meta-count">112</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Utrecht</span><span class="bar-meta-count">94</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:46%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Alkmaar</span><span class="bar-meta-count">67</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:33%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Eindhoven</span><span class="bar-meta-count">51</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Breda</span><span class="bar-meta-count">38</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Nijmegen</span><span class="bar-meta-count">27</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:13%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Haarlem</span><span class="bar-meta-count">19</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Zwolle</span><span class="bar-meta-count">12</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+          </div>
+          <div class="hidden-note">14 kleinere plaatsen verborgen (31 opens) — onder de privacydrempel van 5</div>
+        </div>
+
+      </div><!-- /demo-wrap -->
+
+      <hr class="tr-divider">
+
+      <p>Vragen over de data? Mail naar <a href="mailto:info@bennit.nl">info@bennit.nl</a>. Volledig privacybeleid: <a href="../privacy/">Privacyverklaring Reanimatie Timer</a>.</p>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rt-footer">
+    <div class="container rt-footer-inner">
+      <span>Ontwikkeld door <a href="../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Actief brandweerman</span>
+      <div class="rt-footer-links">
+        <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../privacy/">Privacyverklaring</a>
+        <a href="../">Reanimatie Timer</a>
+        <a href="../../">BennIT.nl</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('rtNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+    // Genereer nep-dagstaafjes (30 dagen)
+    const bars = document.getElementById('dailyBars');
+    const fakeDays = [8,12,6,14,18,9,7,21,25,19,11,8,15,22,28,17,13,9,16,24,20,14,10,18,23,19,12,8,15,21];
+    const maxBar = Math.max(...fakeDays);
+    fakeDays.forEach((v, i) => {
+      const col = document.createElement('div');
+      col.className = 'bar-col';
+      col.style.height = `${Math.max(5, (v / maxBar) * 100)}%`;
+      col.title = `${v} opens`;
+      bars.appendChild(col);
+    });
+  </script>
+
+</body>
+</html>
