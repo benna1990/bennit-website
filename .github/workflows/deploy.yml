@@ -25,4 +25,8 @@ jobs:
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.gitignore' \
+            --exclude='cgi-bin/' \
+            --exclude='*.sql' \
+            --exclude='*.zip' \
+            --exclude='bennit.nl/' \
             ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:${{ secrets.FTP_PATH }}
