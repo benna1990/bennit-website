@@ -29,4 +29,4 @@ jobs:
             --exclude='*.sql' \
             --exclude='*.zip' \
             --exclude='bennit.nl/' \
-            ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:${{ secrets.FTP_PATH }}
+            ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:./
