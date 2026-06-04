@@ -16,12 +16,13 @@ jobs:
       - name: Install rsync + sshpass
         run: sudo apt-get install -y sshpass rsync
 
-      - name: Check SSH landing directory
+      - name: Cleanup leftover htdocs/ submap op server
         env:
           SSHPASS: ${{ secrets.FTP_PASSWORD }}
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
-            ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} "pwd && ls -la"
+            ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} \
+            "rm -rf ./htdocs/ 2>/dev/null; echo done"
 
       - name: Deploy via rsync over SSH
         env:
@@ -32,6 +33,7 @@ jobs:
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.gitignore' \
+            --exclude='.claude/' \
             --exclude='cgi-bin/' \
             --exclude='*.sql' \
             --exclude='*.zip' \
