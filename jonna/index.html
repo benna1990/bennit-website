@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ootjers Facilities — BennIT Preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #111315;
+      color: #F3F4F6;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: #1E2126;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      gap: 16px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: #F3F4F6;
+      text-decoration: none;
+    }
+
+    .logo span { color: #F97316; }
+
+    .divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .label {
+      font-size: 13px;
+      color: rgba(243,244,246,0.5);
+    }
+
+    .url {
+      font-size: 13px;
+      color: #F97316;
+      font-weight: 600;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(249,115,22,0.15);
+      color: #F97316;
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: 20px;
+      padding: 3px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .open-btn {
+      font-size: 13px;
+      color: #F3F4F6;
+      text-decoration: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 6px 14px;
+      transition: background 0.2s;
+    }
+
+    .open-btn:hover { background: rgba(255,255,255,0.1); }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: calc(100vh - 53px);
+      border: none;
+    }
+
+    .blocked {
+      display: none;
+      height: calc(100vh - 53px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .blocked p { color: rgba(243,244,246,0.5); font-size: 15px; }
+
+    .blocked a {
+      display: inline-block;
+      background: #F97316;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <a class="logo" href="/"><Benn<span>IT</span></a>
+      <div class="divider"></div>
+      <span class="label">Preview voor</span>
+      <span class="url">ootjersfacilities.nl</span>
+    </div>
+    <div class="topbar-left">
+      <span class="badge">Client preview</span>
+      <a class="open-btn" href="https://ootjersfacilities.nl" target="_blank">↗ Openen in nieuw tabblad</a>
+    </div>
+  </div>
+
+  <iframe
+    id="preview"
+    src="https://ootjersfacilities.nl"
+    title="Ootjers Facilities preview"
+    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+  ></iframe>
+
+  <div class="blocked" id="blocked">
+    <p>Deze website kan niet in een preview worden getoond.<br>Klik hieronder om hem direct te openen.</p>
+    <a href="https://ootjersfacilities.nl" target="_blank">Ootjers Facilities openen →</a>
+  </div>
+
+  <script>
+    const iframe = document.getElementById('preview');
+    const blocked = document.getElementById('blocked');
+
+    iframe.addEventListener('error', () => {
+      iframe.style.display = 'none';
+      blocked.style.display = 'flex';
+    });
+
+    // Fallback: als iframe na 5s leeg is, toon de knop
+    setTimeout(() => {
+      try {
+        if (!iframe.contentDocument || iframe.contentDocument.body.innerHTML === '') {
+          iframe.style.display = 'none';
+          blocked.style.display = 'flex';
+        }
+      } catch(e) {
+        // Cross-origin — waarschijnlijk wél geladen
+      }
+    }, 5000);
+  </script>
+
+</body>
+</html>
