@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Verwijs zoekmachines naar de sitemap (PAS DOMEIN AAN)
+Sitemap: https://www.ootjersfacilities.nl/sitemap.xml
