@@ -22,7 +22,7 @@ jobs:
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no \
             ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} \
-            "pwd && echo '---' && ls -la && echo '---' && ls -la htdocs/ 2>/dev/null || echo 'geen htdocs submap'"
+            "pwd && echo '---' && ls -la .. && echo '---' && ls -la"
 
       - name: Cleanup leftover htdocs/ submap op server
         env:
