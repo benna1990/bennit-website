@@ -16,6 +16,13 @@ jobs:
       - name: Install rsync + sshpass
         run: sudo apt-get install -y sshpass rsync
 
+      - name: Check SSH landing directory
+        env:
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} "pwd && ls -la"
+
       - name: Deploy via rsync over SSH
         env:
           SSHPASS: ${{ secrets.FTP_PASSWORD }}
