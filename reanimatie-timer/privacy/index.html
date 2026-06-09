@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacyverklaring — Reanimatie Timer | BennIT</title>
+  <meta name="description" content="Privacyverklaring van de Reanimatie Timer iOS-app. Lees hoe de app omgaat met persoonsgegevens, licentiedata en anonieme statistieken.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/privacy/">
+  <meta name="theme-color" content="#111315">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bennit.nl/reanimatie-timer/privacy/">
+  <meta property="og:title" content="Privacyverklaring — Reanimatie Timer">
+  <meta property="og:description" content="Privacyverklaring van de Reanimatie Timer iOS-app. Geen tracking, geen advertenties.">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=20260529">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+
+  <style>
+    /* Nav — zelfde stijl als reanimatie-timer pagina */
+    .rt-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: background 0.3s, backdrop-filter 0.3s; }
+    .rt-nav.scrolled { background: rgba(17,19,21,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .rt-nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* Policy layout */
+    .policy-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .policy-hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .policy-body { max-width: 720px; padding: 60px 0 100px; }
+    .policy-body h2 { font-size: 1.15rem; font-weight: 700; color: var(--white); margin: 44px 0 14px; letter-spacing: -0.02em; }
+    .policy-body h2:first-child { margin-top: 0; }
+    .policy-body p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+    .policy-body ul { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 6px; }
+    .policy-body ul li { color: var(--muted); padding-left: 18px; position: relative; line-height: 1.7; }
+    .policy-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--orange); font-size: 0.75em; top: 4px; }
+    .policy-body a { color: var(--orange); }
+    .policy-body a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .policy-body strong { color: var(--white); }
+    .policy-body .highlight-box { background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+    .policy-body .highlight-box p { margin: 0; }
+    .policy-date { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+    .policy-divider { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+    /* App badge in hero */
+    .app-badge-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .app-icon-sm { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; }
+    .app-badge-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); }
+    .app-badge-name { font-size: 0.95rem; font-weight: 600; color: var(--white); }
+
+    /* Footer */
+    .rt-footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .rt-footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+    .rt-footer-inner a { transition: color 0.2s; }
+    .rt-footer-inner a:hover { color: var(--white); }
+    .rt-footer-links { display: flex; gap: 20px; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="rt-nav scrolled" id="rtNav">
+    <div class="container">
+      <a href="../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Reanimatie Timer
+      </a>
+      <a href="../../" class="logo"><img src="../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">
+        Download gratis
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="policy-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container policy-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../">BennIT</a><span>/</span>
+        <a href="../">Reanimatie Timer</a><span>/</span>
+        <span>Privacyverklaring</span>
+      </nav>
+      <div class="app-badge-row" style="margin-top: 20px;">
+        <picture>
+          <source srcset="../../assets/img/reanimatie-timer-icon.webp" type="image/webp">
+          <img src="../../assets/img/reanimatie-timer-icon.jpg" alt="Reanimatie Timer" class="app-icon-sm" loading="eager">
+        </picture>
+        <div>
+          <div class="app-badge-label">iOS App</div>
+          <div class="app-badge-name">Reanimatie Timer</div>
+        </div>
+      </div>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px;">Privacyverklaring</h1>
+      <p class="policy-date">Laatste update: juni 2026</p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="container">
+    <div class="policy-body">
+
+      <div class="highlight-box">
+        <p>De Reanimatie Timer-app verzamelt <strong>geen persoonsgegevens</strong> voor tracking of advertenties. Alle sessiegegevens blijven op jouw apparaat.</p>
+      </div>
+
+      <p>Deze privacyverklaring beschrijft hoe de app <strong>Reanimatie Timer</strong> omgaat met jouw gegevens. Wij gaan zorgvuldig om met persoonsgegevens en houden ons aan de Algemene Verordening Gegevensbescherming (AVG).</p>
+
+      <h2>Verwerkingsverantwoordelijke</h2>
+      <p>BennIT (Benjamin Ootjers) is verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in deze verklaring.<br>
+      KvK: 61334286 &nbsp;·&nbsp; BTW: NL002200567B42<br>
+      Contact: <a href="mailto:info@bennit.nl">info@bennit.nl</a></p>
+
+      <hr class="policy-divider">
+
+      <h2>Gegevensverwerking</h2>
+      <p>Alle sessiegegevens — zoals tijdsduur, sets, schokken en tijdstempels — worden uitsluitend <strong>lokaal op jouw apparaat</strong> opgeslagen en niet naar externe servers verstuurd. De enige gegevens die de app verstuurt zijn licentiegegevens (uitsluitend bij gebruik van een organisatielicentie) en volledig anonieme gebruiksstatistieken. Beide worden hieronder beschreven.</p>
+
+      <h2>Lokale opslag</h2>
+      <p>Sessielogboeken worden bewaard op jouw apparaat en worden niet automatisch gedeeld. Je kunt sessies exporteren als PDF of CSV; hierbij ben je zelf verantwoordelijk voor de verdere verwerking van dat bestand.</p>
+
+      <h2>Licentiegegevens</h2>
+      <p>Voor het gebruik van een organisatielicentie worden de volgende gegevens opgeslagen op beveiligde servers binnen de Europese Unie (Supabase):</p>
+      <ul>
+        <li><strong>Organisatienaam en e-mailadres</strong> — voor identificatie en communicatie over de licentie</li>
+        <li><strong>Een apparaat-ID</strong> — een willekeurig gegenereerde code, uniek voor dit apparaat, zonder koppeling aan persoonlijke informatie</li>
+        <li><strong>Tijdstip van laatste app-start</strong> — om te controleren of de licentie actief in gebruik is</li>
+      </ul>
+      <p>Deze gegevens worden uitsluitend gebruikt voor licentiebeheer en worden niet gedeeld met derden of gebruikt voor andere doeleinden.</p>
+
+      <h2>Anonieme gebruiksstatistieken</h2>
+      <p>Om de app te verbeteren verzamelen wij volledig anonieme, geaggregeerde gebruiksstatistieken. Telkens als de app wordt geopend wordt verstuurd: de app-versie, het platform (iPhone/iPad), het land en — waar beschikbaar — de regio en plaats (afgeleid uit het IP-adres; het IP-adres zelf wordt niet opgeslagen) en de licentiestatus (proef, gratis of gelicentieerd). Een plaats wordt uitsluitend geaggregeerd getoond vanaf vijf openingen; daaronder blijft het alleen op regioniveau zichtbaar, zodat losse gebruikers nooit herleidbaar zijn.</p>
+      <p>Er wordt géén apparaat-ID, e-mailadres of sessiegegeven meegestuurd. De gegevens worden uitsluitend als optelling per dag bewaard, zodat individuen niet herleidbaar zijn. Je kunt dit uitschakelen via <strong>Instellingen → Privacy</strong> in de app.</p>
+
+      <hr class="policy-divider">
+
+      <h2>Grondslag voor de verwerking</h2>
+      <ul>
+        <li><strong>Licentiegegevens</strong> — uitvoering van de licentieovereenkomst (AVG art. 6 lid 1 sub b)</li>
+        <li><strong>Anonieme statistieken</strong> — gerechtvaardigd belang om de app te verbeteren (AVG art. 6 lid 1 sub f); doordat de gegevens anoniem en geaggregeerd zijn, zijn ze niet tot een persoon herleidbaar</li>
+      </ul>
+
+      <h2>Bewaartermijn</h2>
+      <p>Licentiegegevens worden bewaard zolang de licentie actief is en tot maximaal één jaar daarna. De anonieme statistieken kennen geen persoonsgebonden bewaartermijn, omdat ze niet tot een persoon herleidbaar zijn. Lokale sessiegegevens blijven op jouw apparaat staan totdat je ze zelf verwijdert.</p>
+
+      <h2>Ontvangers en verwerkers</h2>
+      <p>Voor het opslaan van licentiegegevens en het verwerken van de anonieme statistieken maken wij gebruik van <strong>Supabase</strong> als verwerker, met opslag binnen de Europese Unie.</p>
+      <p>Voor het bepalen van land, provincie en plaats uit het IP-adres wordt tijdelijk gebruik gemaakt van <strong>ipwho.is</strong> als geo-dienst. Het IP-adres gaat kortstondig naar deze dienst voor de zoekopdracht en wordt daarna direct weggegooid — niet door ons bewaard, en ipwho.is logt geen verzoeken.</p>
+      <p>Er worden geen gegevens verkocht aan derden.</p>
+
+      <hr class="policy-divider">
+
+      <h2>Systeemmachtigingen</h2>
+      <p>De app vraagt toegang tot de volgende apparaatfuncties:</p>
+      <ul>
+        <li><strong>Meldingen</strong> — voor geluidsalerts wanneer de app op de achtergrond actief is</li>
+        <li><strong>Audio</strong> — voor metronoom en waarschuwingsgeluiden tijdens reanimatie</li>
+      </ul>
+      <p>Deze machtigingen worden uitsluitend gebruikt voor de kernfunctionaliteit van de app.</p>
+
+      <h2>Geen tracking of advertenties</h2>
+      <p>De app maakt geen gebruik van advertentienetwerken of van gebruikerstracking die individuen volgt. Afgezien van de hierboven beschreven anonieme statistieken worden er geen gegevens gedeeld met derden.</p>
+
+      <hr class="policy-divider">
+
+      <h2>Jouw rechten (AVG)</h2>
+      <p>Je hebt het recht op inzage, rectificatie en verwijdering van jouw persoonsgegevens, en op beperking van of bezwaar tegen de verwerking. Omdat de anonieme statistieken niet tot een persoon herleidbaar zijn, kunnen die niet aan een individu worden gekoppeld. Voor verzoeken over licentiegegevens kun je contact opnemen via onderstaand adres. Daarnaast heb je het recht een klacht in te dienen bij de <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+      <div class="highlight-box" style="margin-bottom: 0;">
+        <p>Wil je precies zien wat ik zie? Bekijk de <a href="../transparantie/">transparantiepagina</a> — daar staat het volledige datamodel en een voorbeeldweergave van het dashboard met nep-data.</p>
+      </div>
+
+      <hr class="policy-divider">
+
+      <h2>Wijzigingen</h2>
+      <p>Wij kunnen deze privacyverklaring van tijd tot tijd aanpassen. De meest recente versie staat altijd op deze pagina, met de datum van de laatste wijziging bovenaan.</p>
+
+      <h2>Contact</h2>
+      <div class="highlight-box">
+        <p><strong>BennIT</strong> — Benjamin Ootjers<br>
+        <a href="mailto:info@bennit.nl">info@bennit.nl</a> &nbsp;·&nbsp;
+        Licentievragen: <a href="mailto:licenties@bennit.nl">licenties@bennit.nl</a><br>
+        KvK: 61334286 &nbsp;·&nbsp; BTW: NL002200567B42</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rt-footer">
+    <div class="container rt-footer-inner">
+      <span>Ontwikkeld door <a href="../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Actief brandweerman</span>
+      <div class="rt-footer-links">
+        <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../">Reanimatie Timer</a>
+        <a href="../../#contact">Contact</a>
+        <a href="../../">BennIT.nl</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('rtNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+  </script>
+
+</body>
+</html>

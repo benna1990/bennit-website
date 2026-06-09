@@ -1,62 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Hoofdpagina -->
   <url>
     <loc>https://bennit.nl/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Diensten -->
   <url>
     <loc>https://bennit.nl/it-support/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bennit.nl/computer-reparatie/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bennit.nl/camerasystemen/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bennit.nl/smart-home/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bennit.nl/netwerken/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bennit.nl/software-ontwikkeling/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Reanimatie Timer app -->
   <url>
     <loc>https://bennit.nl/reanimatie-timer/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://bennit.nl/reanimatie-timer/updates/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bennit.nl/reanimatie-timer/privacy/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bennit.nl/reanimatie-timer/transparantie/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Engelse versie -->
   <url>
     <loc>https://bennit.nl/en/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Juridisch -->
   <url>
     <loc>https://bennit.nl/privacy-policy/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -66,4 +94,5 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>
