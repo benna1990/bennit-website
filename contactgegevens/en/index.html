@@ -411,13 +411,13 @@
         <form id="offerteForm" action="https://formspree.io/f/xaqkayzl" method="POST" novalidate>
 
           <!-- Hidden field to mark this as EN submission -->
-          <input type="hidden" name="_language" value="EN">
+          <input type="hidden" name="taal" value="EN">
 
           <!-- Personal / Business toggle -->
           <div class="type-toggle" role="group" aria-label="Customer type">
-            <input type="radio" name="_type" id="type-personal" value="Personal" checked>
+            <input type="radio" name="klanttype" id="type-personal" value="Personal" checked>
             <label for="type-personal">👤 Personal</label>
-            <input type="radio" name="_type" id="type-business" value="Business">
+            <input type="radio" name="klanttype" id="type-business" value="Business">
             <label for="type-business">🏢 Business</label>
           </div>
 
@@ -526,7 +526,7 @@
 
   <script>
     // ── Personal / Business toggle ────────────────────────
-    const typeRadios = document.querySelectorAll('input[name="_type"]');
+    const typeRadios = document.querySelectorAll('input[name="klanttype"]');
     const businessGroups = document.querySelectorAll('.business-only');
     const companyInput = document.getElementById('bedrijfsnaam');
 
@@ -570,15 +570,16 @@
           form.style.display = 'none';
           successBox.classList.add('visible');
         } else {
-          throw new Error('Server error');
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || `HTTP ${res.status}`);
         }
-      } catch {
+      } catch (err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Try again
         `;
-        alert('Something went wrong. Please try again or email us at info@bennit.nl.');
+        alert('Something went wrong (' + err.message + '). Please try again or email info@bennit.nl.');
       }
     });
   </script>

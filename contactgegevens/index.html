@@ -412,9 +412,9 @@
 
           <!-- Particulier / Bedrijf toggle -->
           <div class="type-toggle" role="group" aria-label="Type klant">
-            <input type="radio" name="_type" id="type-particulier" value="Particulier" checked>
+            <input type="radio" name="klanttype" id="type-particulier" value="Particulier" checked>
             <label for="type-particulier">👤 Particulier</label>
-            <input type="radio" name="_type" id="type-bedrijf" value="Bedrijf">
+            <input type="radio" name="klanttype" id="type-bedrijf" value="Bedrijf">
             <label for="type-bedrijf">🏢 Bedrijf</label>
           </div>
 
@@ -523,7 +523,7 @@
 
   <script>
     // ── Particulier / Bedrijf toggle ──────────────────────
-    const typeRadios = document.querySelectorAll('input[name="_type"]');
+    const typeRadios = document.querySelectorAll('input[name="klanttype"]');
     const bedrijfGroups = document.querySelectorAll('.bedrijf-only');
     const bedrijfsnaamInput = document.getElementById('bedrijfsnaam');
 
@@ -568,15 +568,16 @@
           form.style.display = 'none';
           successBox.classList.add('visible');
         } else {
-          throw new Error('Server error');
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.error || `HTTP ${res.status}`);
         }
-      } catch {
+      } catch (err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Probeer opnieuw
         `;
-        alert('Er ging iets mis. Probeer het opnieuw of stuur een e-mail naar info@bennit.nl.');
+        alert('Er ging iets mis (' + err.message + '). Probeer het opnieuw of stuur een e-mail naar info@bennit.nl.');
       }
     });
   </script>
