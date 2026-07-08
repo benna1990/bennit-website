@@ -225,6 +225,41 @@
       </div>
       <p>Die <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">count: 7</code> betekent: op 3 juni 2026 werd de app 7 keer geopend door iemand (of meerdere mensen) op een iPhone in Amsterdam, gratis versie 2.1.0. Er is geen manier om te weten of dit één persoon was of zeven.</p>
 
+      <h2 style="margin-top: 44px;">Sessiestatistieken</h2>
+      <p>Daarnaast stuurt de app bij het <strong>beëindigen van een sessie</strong> een tweede seintje. Dat wordt opgeteld in een aparte tabel: <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">session_usage_daily</code>. Hiermee kan ik zien hoeveel echte reanimaties er plaatsvinden, zonder de exacte duur te kennen.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Veld</th>
+              <th>Betekenis</th>
+              <th>Voorbeeld</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>day</td><td>Datum (UTC)</td><td style="color:var(--muted)">2026-07-08</td></tr>
+            <tr><td>app_version</td><td>App-versie</td><td style="color:var(--muted)">1.2.1</td></tr>
+            <tr><td>platform</td><td>Apparaattype</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Landcode (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Provincie</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>Plaats (zie privacydrempel)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>session_bucket</td><td>Duurcategorie</td><td style="color:var(--muted)">test / short / long</td></tr>
+            <tr><td>count</td><td>Aantal sessies voor deze combinatie</td><td style="color:var(--muted)">3</td></tr>
+            <tr><td>total_sets</td><td>Opgeteld aantal sets</td><td style="color:var(--muted)">12</td></tr>
+            <tr><td>total_shocks</td><td>Opgeteld aantal schokken</td><td style="color:var(--muted)">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px;">De drie duurcategorieen:</p>
+      <ul>
+        <li><strong>test</strong> = korter dan 2 minuten (demo of test)</li>
+        <li><strong>short</strong> = 2 tot 20 minuten (standaard reanimatie)</li>
+        <li><strong>long</strong> = langer dan 20 minuten (verlengde reanimatie)</li>
+      </ul>
+      <p>De exacte tijdsduur wordt nooit verstuurd. Sets en schokken worden opgeteld per bucket, niet per individuele sessie.</p>
+
       <hr class="tr-divider">
 
       <!-- 2. Wat ik NIET zie -->
@@ -244,7 +279,7 @@
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen sessie-inhoud.</strong> Tijdsduur, sets, schokken, tijdstempels — dat blijft volledig lokaal op jouw toestel. Ik zie nooit wat je reanimatie-sessies bevatten.</span>
+          <span><strong>Geen exacte sessie-inhoud.</strong> Tijdstempels, het verloop en de precieze duur van je sessie blijven volledig lokaal. Ik zie alleen een duurcategorie (kort/gemiddeld/lang), het aantal sets en het aantal schokken, opgeteld per dag.</span>
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -434,6 +469,51 @@
         </div>
 
       </div><!-- /demo-wrap -->
+
+      <!-- 5. Sessiestatistieken demo -->
+      <div class="demo-wrap" style="margin-top: 32px;">
+        <div class="demo-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Sessiestatistieken · laatste 90 dagen · volledig anoniem en geaggregeerd
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi"><div class="kpi-val">312</div><div class="kpi-label">Sessies (totaal)</div></div>
+          <div class="kpi"><div class="kpi-val">87</div><div class="kpi-label">Echte reanimaties</div></div>
+          <div class="kpi"><div class="kpi-val">3,4</div><div class="kpi-label">Gem. sets per sessie</div></div>
+          <div class="kpi"><div class="kpi-val">0,8</div><div class="kpi-label">Gem. schokken per sessie</div></div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-title">Per duurcategorie</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">test (&lt; 2 min)</span><span class="bar-meta-count">198</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">short (2-20 min)</span><span class="bar-meta-count">82</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:41%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">long (&gt; 20 min)</span><span class="bar-meta-count">32</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:16%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">Totaal sets &amp; schokken</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Sets (alle sessies)</span><span class="bar-meta-count">1.064</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Schokken (alle sessies)</span><span class="bar-meta-count">247</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <hr class="tr-divider">
 
