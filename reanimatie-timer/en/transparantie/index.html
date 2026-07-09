@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transparantie — Reanimatie Timer | BennIT</title>
-  <meta name="description" content="Wat ziet BennIT in het dashboard van de Reanimatie Timer-app? Volledig transparant: het exacte datamodel, wat wij wél en niet zien, en een live voorbeeld.">
+  <title>Transparency — Reanimatie Timer | BennIT</title>
+  <meta name="description" content="What does BennIT see in the Reanimatie Timer app dashboard? Fully transparent: the exact data model, what we do and don't see, and a live example.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/transparantie/">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/en/transparantie/">
   <link rel="alternate" hreflang="nl" href="https://bennit.nl/reanimatie-timer/transparantie/">
   <link rel="alternate" hreflang="en" href="https://bennit.nl/reanimatie-timer/en/transparantie/">
   <meta name="theme-color" content="#111315">
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=20260529">
+  <link rel="stylesheet" href="../../../style.css?v=20260529">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
@@ -150,13 +150,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Reanimatie Timer
       </a>
-      <a href="../../" class="logo"><img src="../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
-      <div class="nav-right">
-        <a href="../en/transparantie/" class="nav-lang-btn">EN</a>
-        <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">
-          Download gratis
-        </a>
-      </div>
+      <a href="../../../" class="logo"><img src="../../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <div class="nav-right"><a href="../../transparantie/" class="nav-lang-btn">NL</a><a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">Download free</a></div>
     </div>
   </nav>
 
@@ -166,15 +161,15 @@
     <div class="hero-glow"></div>
     <div class="container tr-hero-content">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../../">BennIT</a><span>/</span>
+        <a href="../../../">BennIT</a><span>/</span>
         <a href="../">Reanimatie Timer</a><span>/</span>
-        <span>Transparantie</span>
+        <span>Transparency</span>
       </nav>
       <div style="margin-top: 24px;">
         <div class="section-tag" style="margin-bottom: 16px;">Open dashboard</div>
-        <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px;">Dit zie ik.<br>Jij ook.</h1>
+        <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px;">This is what I see.<br>So do you.</h1>
         <p style="color: var(--muted); max-width: 560px; line-height: 1.8; font-size: 1rem;">
-          De app verzamelt anonieme gebruiksstatistieken. Ik vind dat je gewoon mag weten wat ik zie — niet omdat ik er mee opschep, maar omdat je het recht hebt om het te controleren. Op deze pagina staat het exacte datamodel, wat er <em>niet</em> in zit, en hoe het dashboard er in de praktijk uitziet.
+          The app collects anonymous usage statistics. I think you simply deserve to know what I see — not because I'm showing off, but because you have the right to check it. This page shows the exact data model, what is <em>not</em> in it, and what the dashboard looks like in practice.
         </p>
       </div>
     </div>
@@ -184,32 +179,32 @@
     <div class="tr-body">
 
       <!-- 1. Datamodel -->
-      <h2>Wat er in de database staat</h2>
-      <p>De app stuurt bij elke opening een seintje naar de server. Dat seintje wordt <strong>niet als losse regel opgeslagen</strong> — het wordt direct opgeteld bij een bestaande rij. De tabel heet <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">app_usage_daily</code> en heeft één rij per unieke combinatie van onderstaande velden per dag.</p>
+      <h2>What's stored in the database</h2>
+      <p>Every time the app is opened, it sends a small signal to the server. That signal is <strong>not stored as a separate record</strong> — it's added directly to an existing row. The table is called <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">app_usage_daily</code> and has one row per unique combination of the fields below, per day.</p>
 
       <div class="data-table-wrap">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Veld</th>
-              <th>Betekenis</th>
-              <th>Voorbeeld</th>
+              <th>Field</th>
+              <th>Meaning</th>
+              <th>Example</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>day</td><td>Datum (UTC)</td><td style="color:var(--muted)">2026-06-03</td></tr>
-            <tr><td>app_version</td><td>App-versie</td><td style="color:var(--muted)">1.2.1</td></tr>
-            <tr><td>platform</td><td>Apparaattype</td><td style="color:var(--muted)">ios / ipados</td></tr>
-            <tr><td>country</td><td>Landcode (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
-            <tr><td>region</td><td>Provincie</td><td style="color:var(--muted)">North Holland</td></tr>
-            <tr><td>city</td><td>Plaats (zie privacydrempel ↓)</td><td style="color:var(--muted)">Amsterdam</td></tr>
-            <tr><td>license_state</td><td>Licentiestatus</td><td style="color:var(--muted)">trial / free / licensed</td></tr>
-            <tr><td>count</td><td>Aantal app-openingen voor deze combinatie</td><td style="color:var(--muted)">7</td></tr>
+            <tr><td>day</td><td>Date (UTC)</td><td style="color:var(--muted)">2026-06-03</td></tr>
+            <tr><td>app_version</td><td>App version</td><td style="color:var(--muted)">1.2.1</td></tr>
+            <tr><td>platform</td><td>Device type</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Country code (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Province</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>City (see privacy threshold ↓)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>license_state</td><td>License status</td><td style="color:var(--muted)">trial / free / licensed</td></tr>
+            <tr><td>count</td><td>Number of app opens for this combination</td><td style="color:var(--muted)">7</td></tr>
           </tbody>
         </table>
       </div>
 
-      <p style="margin-top: 16px;">Zo ziet een echte rij eruit:</p>
+      <p style="margin-top: 16px;">Here's what a real row looks like:</p>
       <div class="example-row">
         <table>
           <thead>
@@ -231,129 +226,129 @@
           </tbody>
         </table>
       </div>
-      <p>Die <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">count: 7</code> betekent: op 3 juni 2026 werd de app 7 keer geopend door iemand (of meerdere mensen) op een iPhone in Amsterdam, gratis versie 2.1.0. Er is geen manier om te weten of dit één persoon was of zeven.</p>
+      <p>That <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">count: 7</code> means: on 3 June 2026 the app was opened 7 times by someone (or several people) on an iPhone in Amsterdam, free version 2.1.0. There's no way to know whether this was one person or seven.</p>
 
-      <h2 style="margin-top: 44px;">Sessiestatistieken</h2>
-      <p>Daarnaast stuurt de app bij het <strong>beëindigen van een sessie</strong> een tweede seintje. Dat wordt opgeteld in een aparte tabel: <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">session_usage_daily</code>. Hiermee kan ik zien hoeveel echte reanimaties er plaatsvinden, zonder de exacte duur te kennen.</p>
+      <h2 style="margin-top: 44px;">Session statistics</h2>
+      <p>In addition, the app sends a second signal when a <strong>session ends</strong>. That's aggregated in a separate table: <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">session_usage_daily</code>. This lets me see how many real resuscitations take place, without knowing the exact duration.</p>
 
       <div class="data-table-wrap">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Veld</th>
-              <th>Betekenis</th>
-              <th>Voorbeeld</th>
+              <th>Field</th>
+              <th>Meaning</th>
+              <th>Example</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>day</td><td>Datum (UTC)</td><td style="color:var(--muted)">2026-07-08</td></tr>
-            <tr><td>app_version</td><td>App-versie</td><td style="color:var(--muted)">1.2.1</td></tr>
-            <tr><td>platform</td><td>Apparaattype</td><td style="color:var(--muted)">ios / ipados</td></tr>
-            <tr><td>country</td><td>Landcode (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
-            <tr><td>region</td><td>Provincie</td><td style="color:var(--muted)">North Holland</td></tr>
-            <tr><td>city</td><td>Plaats (zie privacydrempel)</td><td style="color:var(--muted)">Amsterdam</td></tr>
-            <tr><td>session_bucket</td><td>Duurcategorie</td><td style="color:var(--muted)">test / short / long</td></tr>
-            <tr><td>count</td><td>Aantal sessies voor deze combinatie</td><td style="color:var(--muted)">3</td></tr>
-            <tr><td>total_sets</td><td>Opgeteld aantal sets</td><td style="color:var(--muted)">12</td></tr>
-            <tr><td>total_shocks</td><td>Opgeteld aantal schokken</td><td style="color:var(--muted)">4</td></tr>
+            <tr><td>day</td><td>Date (UTC)</td><td style="color:var(--muted)">2026-07-08</td></tr>
+            <tr><td>app_version</td><td>App version</td><td style="color:var(--muted)">1.2.1</td></tr>
+            <tr><td>platform</td><td>Device type</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Country code (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Province</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>City (see privacy threshold)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>session_bucket</td><td>Duration category</td><td style="color:var(--muted)">test / short / long</td></tr>
+            <tr><td>count</td><td>Number of sessions for this combination</td><td style="color:var(--muted)">3</td></tr>
+            <tr><td>total_sets</td><td>Total sets (summed)</td><td style="color:var(--muted)">12</td></tr>
+            <tr><td>total_shocks</td><td>Total shocks (summed)</td><td style="color:var(--muted)">4</td></tr>
           </tbody>
         </table>
       </div>
 
-      <p style="margin-top: 16px;">De drie duurcategorieen:</p>
+      <p style="margin-top: 16px;">The three duration categories:</p>
       <ul>
-        <li><strong>test</strong> = korter dan 2 minuten (demo of test)</li>
-        <li><strong>short</strong> = 2 tot 20 minuten (standaard reanimatie)</li>
-        <li><strong>long</strong> = langer dan 20 minuten (verlengde reanimatie)</li>
+        <li><strong>test</strong> = shorter than 2 minutes (demo or test)</li>
+        <li><strong>short</strong> = 2 to 20 minutes (standard resuscitation)</li>
+        <li><strong>long</strong> = longer than 20 minutes (prolonged resuscitation)</li>
       </ul>
-      <p>De exacte tijdsduur wordt nooit verstuurd. Sets en schokken worden opgeteld per bucket, niet per individuele sessie.</p>
+      <p>The exact duration is never sent. Sets and shocks are summed per bucket, not per individual session.</p>
 
       <hr class="tr-divider">
 
       <!-- 2. Wat ik NIET zie -->
-      <h2>Wat ik niet zie</h2>
+      <h2>What I don't see</h2>
       <ul class="check-list">
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen naam of e-mailadres</strong> in de statistieken. Die staan alleen in de aparte licentietabel, alleen voor organisaties met een licentie.</span>
+          <span><strong>No name or email address</strong> in the statistics. Those are only in the separate license table, and only for organizations with a license.</span>
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen IP-adres bewaard.</strong> Het IP wordt alleen heel even in het geheugen gebruikt: het gaat kortstondig naar een externe geo-dienst (ipwho.is) om land, provincie en plaats op te zoeken. Direct daarna wordt het weggegooid — het IP wordt nooit gelogd of opgeslagen, niet bij ons en niet bij de geo-dienst.</span>
+          <span><strong>No IP address stored.</strong> The IP is only used briefly in memory: it's sent momentarily to an external geo service (ipwho.is) to look up country, province and city. Right after that it's discarded — the IP is never logged or stored, neither by us nor by the geo service.</span>
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen apparaat-ID</strong> in de statistieken. Ieder seintje is anoniem; er is geen manier om twee openingen aan hetzelfde toestel te koppelen.</span>
+          <span><strong>No device ID</strong> in the statistics. Every signal is anonymous; there's no way to link two opens to the same device.</span>
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen exacte sessie-inhoud.</strong> Tijdstempels, het verloop en de precieze duur van je sessie blijven volledig lokaal. Ik zie alleen een duurcategorie (kort/gemiddeld/lang), het aantal sets en het aantal schokken, opgeteld per dag.</span>
+          <span><strong>No exact session content.</strong> Timestamps, the sequence and the precise duration of your session stay entirely local. I only see a duration category (short/medium/long), the number of sets and the number of shocks, summed per day.</span>
         </li>
         <li>
           <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span><strong>Geen exacte tijd.</strong> Alleen de datum (dag), geen tijdstip van openen.</span>
+          <span><strong>No exact time.</strong> Only the date (day), no time of opening.</span>
         </li>
       </ul>
 
       <hr class="tr-divider">
 
       <!-- 3. Privacy-waarborgen -->
-      <h2>Privacy-waarborgen</h2>
+      <h2>Privacy safeguards</h2>
       <div class="waarborgen">
         <div class="waarborg">
-          <div class="waarborg-title">Opgeteld per dag</div>
-          <div class="waarborg-desc">Geen tijdstip per opening — alleen een dagelijks totaal per combinatie. Hoe vaak je de app op één dag opent, ziet eruit als één getal.</div>
+          <div class="waarborg-title">Summed per day</div>
+          <div class="waarborg-desc">No time per open — just a daily total per combination. How often you open the app in a single day looks like one number.</div>
         </div>
         <div class="waarborg">
-          <div class="waarborg-title">Kleine-cel-onderdrukking</div>
-          <div class="waarborg-desc">Een <strong style="color: var(--white);">plaats</strong> wordt pas getoond vanaf <strong style="color: var(--white);">5 openingen</strong>. Kleinere aantallen worden alleen op provincieniveau zichtbaar. Zo is een losse gebruiker in een klein dorp nooit herleidbaar.</div>
+          <div class="waarborg-title">Small-cell suppression</div>
+          <div class="waarborg-desc">A <strong style="color: var(--white);">city</strong> is only shown from <strong style="color: var(--white);">5 opens</strong> onward. Smaller counts are only visible at province level. That way a single user in a small village can never be traced.</div>
         </div>
         <div class="waarborg">
-          <div class="waarborg-title">Uitschakelbaar</div>
-          <div class="waarborg-desc">Je kunt dit volledig uitzetten via <strong style="color: var(--white);">Instellingen → Privacy</strong> in de app. Dan stuurt de app helemaal niets.</div>
+          <div class="waarborg-title">Can be turned off</div>
+          <div class="waarborg-desc">You can turn this off completely via <strong style="color: var(--white);">Settings → Privacy</strong> in the app. Then the app sends nothing at all.</div>
         </div>
         <div class="waarborg">
-          <div class="waarborg-title">Geen dev-builds</div>
-          <div class="waarborg-desc">Ontwikkel- en TestFlight-builds sturen niets. Alleen de App Store-versie stuurt statistieken, zodat testdata de cijfers niet vertroebelt.</div>
+          <div class="waarborg-title">No dev builds</div>
+          <div class="waarborg-desc">Development and TestFlight builds send nothing. Only the App Store version sends statistics, so test data doesn't muddy the figures.</div>
         </div>
       </div>
 
       <hr class="tr-divider">
 
       <!-- 4. Hoe het dashboard eruitziet -->
-      <h2>Zo ziet mijn dashboard eruit</h2>
-      <p>Onderstaande weergave is gevuld met <strong>voorbeeldcijfers</strong> — niet de echte data. De opmaak, de velden en de privacydrempel zijn identiek aan het echte dashboard.</p>
+      <h2>What my dashboard looks like</h2>
+      <p>The view below is filled with <strong>example figures</strong> — not the real data. The layout, the fields and the privacy threshold are identical to the real dashboard.</p>
 
       <div class="demo-banner">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Voorbeelddata — niet de echte cijfers. Structuur en opmaak zijn identiek aan het echte dashboard.
+        Example data — not the real figures. Structure and layout are identical to the real dashboard.
       </div>
 
       <div class="demo-wrap">
         <div class="demo-title">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Gebruiksstatistieken · laatste 90 dagen · volledig anoniem en geaggregeerd · opgeslagen binnen de EU (Supabase)
+          Usage statistics · last 90 days · fully anonymous and aggregated · stored within the EU (Supabase)
         </div>
 
         <!-- KPI's -->
         <div class="kpi-grid">
-          <div class="kpi"><div class="kpi-val">1.847</div><div class="kpi-label">App-opens (totaal)</div></div>
-          <div class="kpi"><div class="kpi-val">74</div><div class="kpi-label">Actieve dagen</div></div>
-          <div class="kpi"><div class="kpi-val">8</div><div class="kpi-label">Landen</div></div>
-          <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">App-versies</div></div>
+          <div class="kpi"><div class="kpi-val">1.847</div><div class="kpi-label">App opens (total)</div></div>
+          <div class="kpi"><div class="kpi-val">74</div><div class="kpi-label">Active days</div></div>
+          <div class="kpi"><div class="kpi-val">8</div><div class="kpi-label">Countries</div></div>
+          <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">App versions</div></div>
         </div>
 
         <!-- Dagelijks staafdiagram -->
         <div class="daily-chart">
-          <div class="daily-chart-title">Per dag (laatste 30 dagen) · 623 opens</div>
+          <div class="daily-chart-title">Per day (last 30 days) · 623 opens</div>
           <div class="bar-row" id="dailyBars"></div>
-          <div class="chart-dates"><span>5 mei</span><span>3 jun</span></div>
+          <div class="chart-dates"><span>5 May</span><span>3 Jun</span></div>
         </div>
 
         <!-- Bar charts -->
         <div class="charts-grid">
           <div class="chart-card">
-            <div class="chart-card-title">Per licentiestatus</div>
+            <div class="chart-card-title">By license status</div>
             <div class="bar-item">
               <div class="bar-meta"><span class="bar-meta-label">free</span><span class="bar-meta-count">1.102</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -369,7 +364,7 @@
           </div>
 
           <div class="chart-card">
-            <div class="chart-card-title">Per app-versie</div>
+            <div class="chart-card-title">By app version</div>
             <div class="bar-item">
               <div class="bar-meta"><span class="bar-meta-label">1.2.1</span><span class="bar-meta-count">1.431</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -385,7 +380,7 @@
           </div>
 
           <div class="chart-card">
-            <div class="chart-card-title">Per land</div>
+            <div class="chart-card-title">By country</div>
             <div class="bar-item">
               <div class="bar-meta"><span class="bar-meta-label">NL</span><span class="bar-meta-count">1.563</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -399,13 +394,13 @@
               <div class="bar-track"><div class="bar-fill" style="width:5.5%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-meta"><span class="bar-meta-label">overig</span><span class="bar-meta-count">55</span></div>
+              <div class="bar-meta"><span class="bar-meta-label">other</span><span class="bar-meta-count">55</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:3.5%"></div></div>
             </div>
           </div>
 
           <div class="chart-card">
-            <div class="chart-card-title">Per provincie (NL)</div>
+            <div class="chart-card-title">By province (NL)</div>
             <div class="bar-item">
               <div class="bar-meta"><span class="bar-meta-label">Noord-Holland</span><span class="bar-meta-count">487</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -423,7 +418,7 @@
               <div class="bar-track"><div class="bar-fill" style="width:34%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-meta"><span class="bar-meta-label">overig</span><span class="bar-meta-count">353</span></div>
+              <div class="bar-meta"><span class="bar-meta-label">other</span><span class="bar-meta-count">353</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
             </div>
           </div>
@@ -431,8 +426,8 @@
 
         <!-- Steden met privacy-drempel -->
         <div class="prov-card">
-          <div class="prov-card-title">Per plaats (NL) — privacydrempel</div>
-          <div class="prov-note">Alleen plaatsen met ≥ 5 opens worden bij naam getoond. Kleinere aantallen tellen mee in de provinciescore maar zijn niet herleidbaar naar een individu.</div>
+          <div class="prov-card-title">By city (NL) — privacy threshold</div>
+          <div class="prov-note">Only cities with ≥ 5 opens are shown by name. Smaller counts still count toward the province score but can't be traced to an individual.</div>
           <div class="bar-item">
             <div class="bar-meta"><span class="bar-meta-label">Amsterdam</span><span class="bar-meta-count">203</span></div>
             <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -473,7 +468,7 @@
             <div class="bar-meta"><span class="bar-meta-label">Zwolle</span><span class="bar-meta-count">12</span></div>
             <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
           </div>
-          <div class="hidden-note">14 kleinere plaatsen verborgen (31 opens) — onder de privacydrempel van 5</div>
+          <div class="hidden-note">14 smaller cities hidden (31 opens) — below the privacy threshold of 5</div>
         </div>
 
       </div><!-- /demo-wrap -->
@@ -482,19 +477,19 @@
       <div class="demo-wrap" style="margin-top: 32px;">
         <div class="demo-title">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Sessiestatistieken · laatste 90 dagen · volledig anoniem en geaggregeerd
+          Session statistics · last 90 days · fully anonymous and aggregated
         </div>
 
         <div class="kpi-grid">
-          <div class="kpi"><div class="kpi-val">312</div><div class="kpi-label">Sessies (totaal)</div></div>
-          <div class="kpi"><div class="kpi-val">87</div><div class="kpi-label">Echte reanimaties</div></div>
-          <div class="kpi"><div class="kpi-val">3,4</div><div class="kpi-label">Gem. sets per sessie</div></div>
-          <div class="kpi"><div class="kpi-val">0,8</div><div class="kpi-label">Gem. schokken per sessie</div></div>
+          <div class="kpi"><div class="kpi-val">312</div><div class="kpi-label">Sessions (total)</div></div>
+          <div class="kpi"><div class="kpi-val">87</div><div class="kpi-label">Real resuscitations</div></div>
+          <div class="kpi"><div class="kpi-val">3.4</div><div class="kpi-label">Avg. sets per session</div></div>
+          <div class="kpi"><div class="kpi-val">0.8</div><div class="kpi-label">Avg. shocks per session</div></div>
         </div>
 
         <div class="charts-grid">
           <div class="chart-card">
-            <div class="chart-card-title">Per duurcategorie</div>
+            <div class="chart-card-title">By duration category</div>
             <div class="bar-item">
               <div class="bar-meta"><span class="bar-meta-label">test (&lt; 2 min)</span><span class="bar-meta-count">198</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
@@ -510,13 +505,13 @@
           </div>
 
           <div class="chart-card">
-            <div class="chart-card-title">Totaal sets &amp; schokken</div>
+            <div class="chart-card-title">Total sets &amp; shocks</div>
             <div class="bar-item">
-              <div class="bar-meta"><span class="bar-meta-label">Sets (alle sessies)</span><span class="bar-meta-count">1.064</span></div>
+              <div class="bar-meta"><span class="bar-meta-label">Sets (all sessions)</span><span class="bar-meta-count">1.064</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-meta"><span class="bar-meta-label">Schokken (alle sessies)</span><span class="bar-meta-count">247</span></div>
+              <div class="bar-meta"><span class="bar-meta-label">Shocks (all sessions)</span><span class="bar-meta-count">247</span></div>
               <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
             </div>
           </div>
@@ -525,7 +520,7 @@
 
       <hr class="tr-divider">
 
-      <p>Vragen over de data? Mail naar <a href="mailto:info@bennit.nl">info@bennit.nl</a>. Volledig privacybeleid: <a href="../privacy/">Privacyverklaring Reanimatie Timer</a>.</p>
+      <p>Questions about the data? Email <a href="mailto:info@bennit.nl">info@bennit.nl</a>. Full privacy policy: <a href="../privacy/">Reanimatie Timer Privacy Statement</a>.</p>
 
     </div>
   </div>
@@ -533,12 +528,12 @@
   <!-- FOOTER -->
   <footer class="rt-footer">
     <div class="container rt-footer-inner">
-      <span>Ontwikkeld door <a href="../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Actief brandweerman</span>
+      <span>Developed by <a href="../../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Active firefighter</span>
       <div class="rt-footer-links">
-        <a href="https://apps.apple.com/nl/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
-        <a href="../privacy/">Privacyverklaring</a>
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../privacy/">Privacy Statement</a>
         <a href="../">Reanimatie Timer</a>
-        <a href="../../">BennIT.nl</a>
+        <a href="../../../">BennIT.nl</a>
       </div>
     </div>
   </footer>
