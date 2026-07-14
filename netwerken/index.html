@@ -50,6 +50,36 @@
     gtag('js', new Date());
     gtag('config', 'G-6V9HJ7L9SR');
   </script>
+
+  <style>
+    /* Prijzen & pakketten */
+    .prijs-intro { max-width: 900px; margin: 0 auto 44px; }
+    .prijs-intro-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 760px) { .prijs-intro-steps { grid-template-columns: 1fr; } }
+    .prijs-step { display: flex; gap: 14px; background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .prijs-step-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.3); color: var(--orange); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+    .prijs-step strong { display: block; color: var(--white); font-size: 0.92rem; margin-bottom: 4px; }
+    .prijs-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin: 0; }
+
+    .pakket-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+    @media (max-width: 860px) { .pakket-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; } }
+    .pakket-card { position: relative; background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; }
+    .pakket-featured { border-color: rgba(249,115,22,0.5); box-shadow: 0 0 0 1px rgba(249,115,22,0.25); }
+    .pakket-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #111; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+    .pakket-naam { font-size: 1.15rem; font-weight: 700; color: var(--white); }
+    .pakket-voor { font-size: 0.82rem; color: var(--muted); margin-top: 4px; min-height: 2.4em; }
+    .pakket-prijs { font-size: 1.55rem; font-weight: 700; color: var(--white); margin: 18px 0 4px; letter-spacing: -0.02em; }
+    .pakket-vanaf { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--orange); margin-bottom: 2px; }
+    .pakket-btw { display: block; font-size: 0.75rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+    .pakket-card ul { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-direction: column; gap: 10px; }
+    .pakket-card li { position: relative; padding-left: 24px; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+    .pakket-card li::before { content: ''; position: absolute; left: 0; top: 5px; width: 14px; height: 14px; background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); }
+
+    .pakket-disclaimer { max-width: 720px; margin: 0 auto; text-align: center; color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+    .pakket-disclaimer strong { color: var(--white); }
+    .pakket-link { display: inline-block; margin-top: 10px; color: var(--orange); font-weight: 600; font-size: 0.9rem; }
+    .pakket-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
 </head>
 <body>
 
@@ -162,6 +192,77 @@
       <div class="service-img-banner reveal">
         <picture><source srcset="../assets/img/diensten/netwerken-2.webp" type="image/webp"><img src="../assets/img/diensten/netwerken-2.jpg" alt="Professionele netwerkswitch met geïllumineerde poorten — BennIT netwerk installatie" loading="lazy"></picture>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ Prijzen & pakketten ══════════════════════════════════════════════ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Prijzen &amp; pakketten</div>
+        <h2 class="section-title">Helder over<br>wat het kost.</h2>
+      </div>
+
+      <!-- Zo werkt onze prijs -->
+      <div class="prijs-intro reveal">
+        <div class="prijs-intro-steps">
+          <div class="prijs-step">
+            <span class="prijs-step-num">1</span>
+            <div><strong>Gratis wifi-analyse op locatie</strong><p>We meten je dekking en bespreken wat je écht nodig hebt — vrijblijvend.</p></div>
+          </div>
+          <div class="prijs-step">
+            <span class="prijs-step-num">2</span>
+            <div><strong>Heldere offerte vooraf</strong><p>Je weet precies wat hardware én installatie kosten. Nooit verrassingen achteraf.</p></div>
+          </div>
+          <div class="prijs-step">
+            <span class="prijs-step-num">3</span>
+            <div><strong>Installatie tegen €95/uur excl. btw</strong><p>Plus hardware tegen een eerlijke prijs. Netjes weggewerkt en gedocumenteerd.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicatieve pakketten -->
+      <div class="pakket-grid">
+        <div class="pakket-card reveal">
+          <div class="pakket-naam">Starter</div>
+          <div class="pakket-voor">Woning · 1–2 access points</div>
+          <div class="pakket-prijs"><span class="pakket-vanaf">indicatie</span>€450 – €850<span class="pakket-btw">excl. btw · incl. hardware &amp; installatie</span></div>
+          <ul>
+            <li>1 à 2 UniFi access points</li>
+            <li>Bestaande router benutten</li>
+            <li>Naadloze dekking door het hele huis</li>
+            <li>Installatie, configuratie &amp; uitleg</li>
+          </ul>
+        </div>
+        <div class="pakket-card pakket-featured reveal">
+          <div class="pakket-badge">Meest gekozen</div>
+          <div class="pakket-naam">Comfort</div>
+          <div class="pakket-voor">Groot huis / klein kantoor · 3–4 AP</div>
+          <div class="pakket-prijs"><span class="pakket-vanaf">indicatie</span>€950 – €1.900<span class="pakket-btw">excl. btw · incl. hardware &amp; installatie</span></div>
+          <ul>
+            <li>3 à 4 UniFi access points</li>
+            <li>PoE-switch — voeding via de netwerkkabel</li>
+            <li>CAT6-bekabeling waar nodig</li>
+            <li>Centraal beheer via de UniFi-app</li>
+          </ul>
+        </div>
+        <div class="pakket-card reveal">
+          <div class="pakket-naam">Pro / Zakelijk</div>
+          <div class="pakket-voor">Kantoor / bedrijfspand · 5+ AP</div>
+          <div class="pakket-prijs"><span class="pakket-vanaf">vanaf</span>± €2.000<span class="pakket-btw">op maat, na gratis analyse</span></div>
+          <ul>
+            <li>5 of meer access points</li>
+            <li>VLAN-segmentatie &amp; apart gastnetwerk</li>
+            <li>Volledige bekabeling + kabelgoten</li>
+            <li>Offerte op maat voor jouw pand</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pakket-disclaimer reveal">
+        Bedragen zijn indicaties inclusief hardware en installatie — de definitieve prijs hangt af van je situatie (aantal access points, bekabeling, kabelgoten). Je krijgt altijd een <strong>gratis analyse en een heldere offerte</strong> voordat we beginnen.
+        <br><a href="../#contact" class="pakket-link">Vraag een gratis wifi-analyse aan →</a>
+      </p>
     </div>
   </section>
 
