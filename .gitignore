@@ -1,3 +1,5 @@
 .DS_Store
 Thumbs.db
 api/config.php
+seo-rapporten/
+.claude/seo-reports/
