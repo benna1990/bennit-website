@@ -410,6 +410,9 @@
         <!-- FORM -->
         <form id="offerteForm" action="https://formspree.io/f/xaqkayzl" method="POST" novalidate>
 
+          <!-- Honeypot: verborgen anti-spam veld. Bots vullen dit in; Formspree gooit die inzendingen weg. -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none;">
+
           <!-- Particulier / Bedrijf toggle -->
           <div class="type-toggle" role="group" aria-label="Type klant">
             <input type="radio" name="klanttype" id="type-particulier" value="Particulier" checked>

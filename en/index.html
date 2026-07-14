@@ -525,6 +525,8 @@
 
         <div class="contact-form-wrap reveal">
           <form class="contact-form" id="contactForm" action="https://formspree.io/f/xaqkayzl" method="POST">
+            <!-- Honeypot: hidden anti-spam field. Bots fill it in; Formspree discards those submissions. -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none;">
             <input type="hidden" name="_language" value="en">
             <div class="form-row">
               <div class="form-group">
