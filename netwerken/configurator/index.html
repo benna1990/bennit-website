@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netwerk-configurator — Stel je UniFi wifi samen | BennIT</title>
+  <meta name="description" content="Stel zelf je UniFi wifi-netwerk samen: access points, switch, bekabeling en kabelgoten. Krijg direct een indicatieve prijs en vraag een gratis analyse aan bij BennIT in Diemen.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bennit.nl/netwerken/configurator/">
+  <meta name="theme-color" content="#111315">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bennit.nl/netwerken/configurator/">
+  <meta property="og:title" content="Netwerk-configurator — Stel je UniFi wifi samen | BennIT">
+  <meta property="og:description" content="Stel je UniFi wifi-netwerk samen en krijg direct een indicatieve prijs. Gratis analyse op locatie.">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=20260529">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+
+  <style>
+    /* ── Nav ── */
+    .rt-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: background 0.3s, backdrop-filter 0.3s; }
+    .rt-nav.scrolled { background: rgba(17,19,21,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .rt-nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .cfg-hero { padding: 130px 0 32px; position: relative; overflow: hidden; }
+    .cfg-hero-content { position: relative; z-index: 1; max-width: 720px; }
+
+    /* ── Layout ── */
+    .cfg-layout { display: grid; grid-template-columns: 1fr 360px; gap: 32px; align-items: start; padding-bottom: 100px; }
+    @media (max-width: 900px) { .cfg-layout { grid-template-columns: 1fr; } }
+
+    /* ── Option groups ── */
+    .cfg-group { margin-bottom: 32px; }
+    .cfg-group-title { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .cfg-group-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 14px; line-height: 1.5; }
+
+    /* Choice cards (radio) */
+    .cfg-choices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 620px) { .cfg-choices { grid-template-columns: 1fr 1fr; } }
+    .cfg-choice { position: relative; }
+    .cfg-choice input { position: absolute; opacity: 0; pointer-events: none; }
+    .cfg-choice label { display: block; cursor: pointer; background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px; text-align: center; transition: border-color 0.2s, background 0.2s; }
+    .cfg-choice label:hover { border-color: rgba(255,255,255,0.18); }
+    .cfg-choice input:checked + label { border-color: var(--orange); background: var(--orange-g); }
+    .cfg-choice .ico { font-size: 1.3rem; display: block; margin-bottom: 6px; }
+    .cfg-choice .lbl { display: block; font-size: 0.85rem; font-weight: 600; color: var(--white); }
+    .cfg-choice .sub { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* Stepper */
+    .cfg-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+    .cfg-row-label { font-size: 0.9rem; color: var(--white); font-weight: 500; }
+    .cfg-row-hint { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+    .stepper { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .stepper button { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: var(--black); color: var(--white); font-size: 1.2rem; line-height: 1; cursor: pointer; transition: border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; }
+    .stepper button:hover { border-color: var(--orange); color: var(--orange); }
+    .stepper button:disabled { opacity: 0.35; cursor: not-allowed; border-color: var(--border); color: var(--muted); }
+    .stepper .val { min-width: 40px; text-align: center; font-size: 1rem; font-weight: 700; color: var(--white); }
+
+    /* Select */
+    .cfg-select { background: var(--black); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-family: var(--font); font-size: 0.88rem; padding: 8px 12px; cursor: pointer; }
+    .cfg-select:focus { outline: none; border-color: var(--orange); }
+
+    /* Toggle */
+    .cfg-toggle-wrap { display: flex; align-items: center; }
+    .cfg-toggle { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+    .cfg-toggle input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+    .cfg-toggle .track { position: absolute; inset: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; transition: background 0.2s; }
+    .cfg-toggle .knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--muted); transition: transform 0.2s, background 0.2s; }
+    .cfg-toggle input:checked ~ .track { background: var(--orange-g); border-color: var(--orange); }
+    .cfg-toggle input:checked ~ .knob { transform: translateX(20px); background: var(--orange); }
+
+    /* Extras checkboxes */
+    .cfg-extras { display: flex; flex-direction: column; gap: 10px; }
+
+    /* ── Summary panel ── */
+    .cfg-summary { position: sticky; top: 88px; background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+    @media (max-width: 900px) { .cfg-summary { position: static; } }
+    .cfg-summary-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 16px; }
+    .cfg-sum-list { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px; }
+    .cfg-sum-list li { display: flex; justify-content: space-between; gap: 12px; font-size: 0.85rem; color: var(--muted); }
+    .cfg-sum-list li span:last-child { color: var(--white); font-weight: 500; text-align: right; }
+    .cfg-sum-empty { font-size: 0.85rem; color: var(--muted); font-style: italic; }
+    .cfg-estimate { border-top: 1px solid var(--border); padding-top: 16px; }
+    .cfg-estimate-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .cfg-estimate-val { font-size: 1.7rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; margin: 4px 0 2px; }
+    .cfg-estimate-btw { font-size: 0.75rem; color: var(--muted); }
+    .cfg-estimate-note { font-size: 0.75rem; color: var(--muted); line-height: 1.6; margin-top: 12px; }
+
+    .cfg-cta-btn { display: block; width: 100%; text-align: center; margin-top: 18px; }
+
+    /* ── Lead form ── */
+    .cfg-lead { margin-top: 32px; background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .cfg-lead h2 { font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .cfg-lead p.intro { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .cfg-field { margin-bottom: 14px; }
+    .cfg-field label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
+    .cfg-field input, .cfg-field textarea { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-family: var(--font); font-size: 0.9rem; padding: 11px 13px; }
+    .cfg-field input:focus, .cfg-field textarea:focus { outline: none; border-color: var(--orange); }
+    .cfg-field textarea { resize: vertical; min-height: 70px; }
+    .cfg-success { display: none; text-align: center; padding: 20px 0; }
+    .cfg-success.show { display: block; }
+    .cfg-success-icon { width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 50%; background: rgba(37,211,102,0.14); display: flex; align-items: center; justify-content: center; }
+    .cfg-success-icon svg { width: 26px; height: 26px; stroke: #22C55E; }
+    .cfg-success h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 6px; }
+    .cfg-success p { color: var(--muted); font-size: 0.88rem; }
+
+    /* Footer */
+    .rt-footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .rt-footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+    .rt-footer-inner a { transition: color 0.2s; }
+    .rt-footer-inner a:hover { color: var(--white); }
+    .rt-footer-links { display: flex; gap: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="rt-nav scrolled" id="rtNav">
+    <div class="container">
+      <a href="../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Netwerken
+      </a>
+      <a href="../../" class="logo"><img src="../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <a href="#aanvraag" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">Gratis analyse</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cfg-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container cfg-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../">BennIT</a><span>/</span>
+        <a href="../">Netwerken</a><span>/</span>
+        <span>Configurator</span>
+      </nav>
+      <div style="margin-top: 20px;">
+        <div class="section-tag" style="margin-bottom: 14px;">Netwerk-configurator</div>
+        <h1 style="font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px;">Stel je netwerk samen.</h1>
+        <p style="color: var(--muted); max-width: 540px; line-height: 1.7;">Kies je access points, switch en bekabeling — je ziet direct een indicatieve prijs. De definitieve offerte volgt altijd na een gratis analyse op locatie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIGURATOR -->
+  <div class="container">
+    <div class="cfg-layout">
+
+      <!-- LEFT: options -->
+      <div class="cfg-options">
+
+        <!-- 1. Type pand -->
+        <div class="cfg-group">
+          <div class="cfg-group-title">1. Wat voor situatie?</div>
+          <div class="cfg-group-sub">We stellen op basis hiervan een passend startpunt voor — je kunt daarna alles zelf aanpassen.</div>
+          <div class="cfg-choices">
+            <div class="cfg-choice">
+              <input type="radio" name="pand" id="pand-woning" value="woning" checked>
+              <label for="pand-woning"><span class="ico">🏠</span><span class="lbl">Woning</span><span class="sub">gem. huis</span></label>
+            </div>
+            <div class="cfg-choice">
+              <input type="radio" name="pand" id="pand-groothuis" value="groothuis">
+              <label for="pand-groothuis"><span class="ico">🏡</span><span class="lbl">Groot huis</span><span class="sub">3+ lagen</span></label>
+            </div>
+            <div class="cfg-choice">
+              <input type="radio" name="pand" id="pand-kantoor" value="kantoor">
+              <label for="pand-kantoor"><span class="ico">🏢</span><span class="lbl">Kantoor</span><span class="sub">klein zakelijk</span></label>
+            </div>
+            <div class="cfg-choice">
+              <input type="radio" name="pand" id="pand-bedrijf" value="bedrijf">
+              <label for="pand-bedrijf"><span class="ico">🏭</span><span class="lbl">Bedrijfspand</span><span class="sub">groot zakelijk</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Access points -->
+        <div class="cfg-group">
+          <div class="cfg-group-title">2. Access points</div>
+          <div class="cfg-group-sub">Meer access points = betere dekking. Richtlijn: 1 per ± 75 m² of per verdieping.</div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">Aantal access points</div>
+              <div class="cfg-row-hint" id="apHint">Voor een gemiddelde woning</div>
+            </div>
+            <div class="stepper" data-stepper="ap">
+              <button type="button" data-dir="-1" aria-label="Minder">−</button>
+              <span class="val" id="apVal">2</span>
+              <button type="button" data-dir="1" aria-label="Meer">+</button>
+            </div>
+          </div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">Type access point</div>
+              <div class="cfg-row-hint">Lite voor thuis · Pro voor drukke/zakelijke omgevingen · Outdoor voor buiten</div>
+            </div>
+            <select class="cfg-select" id="apType">
+              <option value="lite">UniFi Lite</option>
+              <option value="pro">UniFi Pro</option>
+              <option value="outdoor">UniFi Outdoor</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. Switch + gateway -->
+        <div class="cfg-group">
+          <div class="cfg-group-title">3. Switch &amp; gateway</div>
+          <div class="cfg-group-sub">Een PoE-switch voedt de access points via de netwerkkabel. Een UniFi-gateway geeft je centraal beheer, VLAN en betere beveiliging.</div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">PoE-switch</div>
+              <div class="cfg-row-hint">Aanbevolen vanaf 2–3 access points</div>
+            </div>
+            <label class="cfg-toggle">
+              <input type="checkbox" id="optSwitch">
+              <span class="track"></span><span class="knob"></span>
+            </label>
+          </div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">UniFi-gateway</div>
+              <div class="cfg-row-hint">Laat uit om je bestaande router te gebruiken</div>
+            </div>
+            <label class="cfg-toggle">
+              <input type="checkbox" id="optGateway">
+              <span class="track"></span><span class="knob"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. Bekabeling -->
+        <div class="cfg-group">
+          <div class="cfg-group-title">4. Bekabeling &amp; kabelgoten</div>
+          <div class="cfg-group-sub">Netwerkkabels (CAT6) zorgen voor een stabiele, snelle verbinding naar elk access point. Kabelgoten werken de kabels netjes weg.</div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">Aantal kabeltrekken (CAT6)</div>
+              <div class="cfg-row-hint">Meestal één per access point</div>
+            </div>
+            <div class="stepper" data-stepper="cable">
+              <button type="button" data-dir="-1" aria-label="Minder">−</button>
+              <span class="val" id="cableVal">2</span>
+              <button type="button" data-dir="1" aria-label="Meer">+</button>
+            </div>
+          </div>
+          <div class="cfg-row">
+            <div>
+              <div class="cfg-row-label">Kabelgoten (meter)</div>
+              <div class="cfg-row-hint">Voor nette, zichtbare wegwerking. Laat op 0 bij inbouw.</div>
+            </div>
+            <div class="stepper" data-stepper="trunk">
+              <button type="button" data-dir="-1" aria-label="Minder">−</button>
+              <span class="val" id="trunkVal">0</span>
+              <button type="button" data-dir="1" aria-label="Meer">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Extra's -->
+        <div class="cfg-group">
+          <div class="cfg-group-title">5. Extra's</div>
+          <div class="cfg-group-sub">Optioneel — handig voor thuiswerkers en bedrijven.</div>
+          <div class="cfg-extras">
+            <div class="cfg-row">
+              <div>
+                <div class="cfg-row-label">VLAN-segmentatie</div>
+                <div class="cfg-row-hint">Aparte, veilige netwerken (bijv. werk / privé / smart home)</div>
+              </div>
+              <label class="cfg-toggle">
+                <input type="checkbox" id="optVlan">
+                <span class="track"></span><span class="knob"></span>
+              </label>
+            </div>
+            <div class="cfg-row">
+              <div>
+                <div class="cfg-row-label">Apart gastnetwerk</div>
+                <div class="cfg-row-hint">Wifi voor bezoekers, gescheiden van je eigen netwerk</div>
+              </div>
+              <label class="cfg-toggle">
+                <input type="checkbox" id="optGuest">
+                <span class="track"></span><span class="knob"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /cfg-options -->
+
+      <!-- RIGHT: summary -->
+      <aside class="cfg-summary" aria-live="polite">
+        <div class="cfg-summary-title">Jouw configuratie</div>
+        <ul class="cfg-sum-list" id="sumList"></ul>
+        <div class="cfg-estimate">
+          <div class="cfg-estimate-label">Indicatieve prijs</div>
+          <div class="cfg-estimate-val" id="estVal">—</div>
+          <div class="cfg-estimate-btw">excl. btw · incl. hardware &amp; installatie</div>
+          <p class="cfg-estimate-note">Dit is een indicatie op basis van je keuzes. De definitieve prijs bepalen we samen na een gratis analyse op locatie.</p>
+        </div>
+        <a href="#aanvraag" class="btn btn-primary cfg-cta-btn">Vraag gratis analyse aan</a>
+      </aside>
+
+    </div>
+
+    <!-- LEAD FORM -->
+    <div class="cfg-lead" id="aanvraag">
+      <form id="cfgForm" action="https://formspree.io/f/xaqkayzl" method="POST">
+        <h2>Vraag een gratis analyse aan</h2>
+        <p class="intro">Je configuratie sturen we mee. We nemen contact op om een gratis wifi-analyse op locatie in te plannen en maken daarna een offerte op maat.</p>
+
+        <!-- Honeypot: verborgen anti-spam veld -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none;">
+        <!-- Wordt door JS gevuld met de samenvatting -->
+        <input type="hidden" name="configuratie" id="fldConfig" value="">
+        <input type="hidden" name="indicatie" id="fldEstimate" value="">
+        <input type="hidden" name="onderwerp" value="Netwerk-configurator aanvraag">
+
+        <div class="cfg-field">
+          <label for="naam">Naam *</label>
+          <input type="text" id="naam" name="naam" placeholder="Jan de Vries" required>
+        </div>
+        <div class="cfg-field">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" name="email" placeholder="jan@voorbeeld.nl" required>
+        </div>
+        <div class="cfg-field">
+          <label for="telefoon">Telefoon *</label>
+          <input type="tel" id="telefoon" name="telefoon" placeholder="06 12345678" required>
+        </div>
+        <div class="cfg-field">
+          <label for="plaats">Plaats</label>
+          <input type="text" id="plaats" name="plaats" placeholder="Diemen">
+        </div>
+        <div class="cfg-field">
+          <label for="bericht">Toelichting (optioneel)</label>
+          <textarea id="bericht" name="bericht" placeholder="Bijv. huidige problemen, oppervlakte, aantal verdiepingen…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="cfgSubmit" style="width:100%;">Aanvraag versturen</button>
+      </form>
+
+      <div class="cfg-success" id="cfgSuccess">
+        <div class="cfg-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Aanvraag ontvangen!</h3>
+        <p>Bedankt — we nemen zo snel mogelijk contact op om je gratis wifi-analyse in te plannen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rt-footer">
+    <div class="container rt-footer-inner">
+      <span>Ontwikkeld door <a href="../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Diemen &amp; omgeving</span>
+      <div class="rt-footer-links">
+        <a href="../">Netwerken</a>
+        <a href="../../#contact">Contact</a>
+        <a href="../../">BennIT.nl</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════════
+       PRIJZEN — pas deze waarden gerust aan (alles excl. btw).
+       Hardware = indicatieve inkoop/verkoopprijs per stuk.
+       Uren × uurtarief = installatie/configuratie.
+       ═══════════════════════════════════════════════════════════════ */
+    const PRICING = {
+      uurtarief: 95,                       // € per uur
+      ap:        { lite: 99, pro: 189, outdoor: 219 },  // € per access point
+      switchPrijs: 169,                    // € PoE-switch
+      gatewayPrijs: 199,                   // € UniFi-gateway
+      kabelPerTrek: 15,                    // € CAT6-materiaal per trek
+      goutPerMeter: 6,                     // € kabelgoot-materiaal per meter
+      uren: {
+        basis: 2,          // basis installatie + configuratie
+        perAp: 1,          // montage + config per access point
+        perKabel: 1.25,    // per kabeltrek
+        switch: 1,         // switch plaatsen + configureren
+        gateway: 1,        // gateway configureren
+        goutPerMeter: 0.15,// kabelgoot plaatsen per meter
+        vlan: 1,           // VLAN-segmentatie opzetten
+        guest: 0.5         // gastnetwerk opzetten
+      },
+      // Onzekerheidsmarge voor de range (laag … hoog)
+      margeLaag: 0.90,
+      margeHoog: 1.15
+    };
+
+    // Startpunt per type pand: [aantal AP, switch, gateway, vlan]
+    const PRESETS = {
+      woning:    { ap: 2, cable: 2, switch: false, gateway: false, vlan: false, hint: 'Voor een gemiddelde woning' },
+      groothuis: { ap: 3, cable: 3, switch: true,  gateway: false, vlan: false, hint: 'Voor een groot huis met meerdere verdiepingen' },
+      kantoor:   { ap: 4, cable: 4, switch: true,  gateway: true,  vlan: false, hint: 'Voor een klein kantoor' },
+      bedrijf:   { ap: 6, cable: 6, switch: true,  gateway: true,  vlan: true,  hint: 'Voor een groter bedrijfspand' }
+    };
+
+    const LIMITS = { ap: [1, 16], cable: [0, 24], trunk: [0, 60] };
+
+    const state = { ap: 2, cable: 2, trunk: 0, apType: 'lite', switch: false, gateway: false, vlan: false, guest: false };
+
+    const $ = id => document.getElementById(id);
+    const euro = n => '€' + Math.round(n).toLocaleString('nl-NL');
+    const round50 = n => Math.round(n / 50) * 50;
+    const apLabel = { lite: 'UniFi Lite', pro: 'UniFi Pro', outdoor: 'UniFi Outdoor' };
+
+    function calc() {
+      const P = PRICING;
+      let hardware = state.ap * P.ap[state.apType]
+        + (state.switch ? P.switchPrijs : 0)
+        + (state.gateway ? P.gatewayPrijs : 0)
+        + state.cable * P.kabelPerTrek
+        + state.trunk * P.goutPerMeter;
+
+      let uren = P.uren.basis
+        + state.ap * P.uren.perAp
+        + state.cable * P.uren.perKabel
+        + (state.switch ? P.uren.switch : 0)
+        + (state.gateway ? P.uren.gateway : 0)
+        + state.trunk * P.uren.goutPerMeter
+        + (state.vlan ? P.uren.vlan : 0)
+        + (state.guest ? P.uren.guest : 0);
+
+      const arbeid = uren * P.uurtarief;
+      const subtotaal = hardware + arbeid;
+      return {
+        laag: round50(subtotaal * P.margeLaag),
+        hoog: round50(subtotaal * P.margeHoog),
+        hardware, arbeid, uren
+      };
+    }
+
+    function render() {
+      // Summary list
+      const items = [];
+      items.push(['Access points', state.ap + '× ' + apLabel[state.apType]]);
+      if (state.switch)  items.push(['PoE-switch', 'ja']);
+      items.push(['Gateway', state.gateway ? 'UniFi-gateway' : 'bestaande router']);
+      if (state.cable > 0) items.push(['Kabeltrekken', state.cable + '× CAT6']);
+      if (state.trunk > 0) items.push(['Kabelgoten', state.trunk + ' m']);
+      if (state.vlan)  items.push(['VLAN-segmentatie', 'ja']);
+      if (state.guest) items.push(['Gastnetwerk', 'ja']);
+
+      $('sumList').innerHTML = items.map(i =>
+        '<li><span>' + i[0] + '</span><span>' + i[1] + '</span></li>').join('');
+
+      const est = calc();
+      $('estVal').textContent = euro(est.laag) + ' – ' + euro(est.hoog);
+
+      // Hidden fields for the lead
+      $('fldConfig').value = items.map(i => i[0] + ': ' + i[1]).join(' · ');
+      $('fldEstimate').value = euro(est.laag) + ' – ' + euro(est.hoog) + ' excl. btw';
+    }
+
+    // Steppers
+    document.querySelectorAll('[data-stepper]').forEach(st => {
+      const key = st.dataset.stepper;
+      const valEl = st.querySelector('.val');
+      st.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const [min, max] = LIMITS[key];
+          state[key] = Math.min(max, Math.max(min, state[key] + parseInt(btn.dataset.dir, 10)));
+          valEl.textContent = state[key];
+          st.querySelector('[data-dir="-1"]').disabled = state[key] <= min;
+          st.querySelector('[data-dir="1"]').disabled = state[key] >= max;
+          render();
+        });
+      });
+    });
+
+    // AP type
+    $('apType').addEventListener('change', e => { state.apType = e.target.value; render(); });
+
+    // Toggles
+    const toggleMap = { optSwitch: 'switch', optGateway: 'gateway', optVlan: 'vlan', optGuest: 'guest' };
+    Object.keys(toggleMap).forEach(id => {
+      $(id).addEventListener('change', e => { state[toggleMap[id]] = e.target.checked; render(); });
+    });
+
+    // Preset on pand change
+    function applyPreset(name) {
+      const p = PRESETS[name];
+      state.ap = p.ap; state.cable = p.cable; state.switch = p.switch; state.gateway = p.gateway; state.vlan = p.vlan;
+      $('apVal').textContent = state.ap;
+      $('cableVal').textContent = state.cable;
+      $('apHint').textContent = p.hint;
+      $('optSwitch').checked = p.switch;
+      $('optGateway').checked = p.gateway;
+      $('optVlan').checked = p.vlan;
+      // refresh stepper disabled state
+      document.querySelectorAll('[data-stepper]').forEach(st => {
+        const key = st.dataset.stepper; const [min, max] = LIMITS[key];
+        st.querySelector('[data-dir="-1"]').disabled = state[key] <= min;
+        st.querySelector('[data-dir="1"]').disabled = state[key] >= max;
+      });
+      render();
+    }
+    document.querySelectorAll('input[name="pand"]').forEach(r => {
+      r.addEventListener('change', e => { if (e.target.checked) applyPreset(e.target.value); });
+    });
+
+    // Initial disabled states + first render
+    document.querySelectorAll('[data-stepper]').forEach(st => {
+      const key = st.dataset.stepper; const [min, max] = LIMITS[key];
+      st.querySelector('[data-dir="-1"]').disabled = state[key] <= min;
+      st.querySelector('[data-dir="1"]').disabled = state[key] >= max;
+    });
+    render();
+
+    // Nav scroll
+    const nav = $('rtNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+    // Form submit (Formspree)
+    const form = $('cfgForm');
+    const submitBtn = $('cfgSubmit');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Versturen…';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          $('cfgSuccess').classList.add('show');
+          if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { event_category: 'configurator' });
+        } else {
+          throw new Error('Network error');
+        }
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Probeer opnieuw';
+      }
+    });
+  </script>
+
+</body>
+</html>
