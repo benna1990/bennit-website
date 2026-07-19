@@ -1,10 +1,18 @@
 # Cloudflare Pages — redirects
 # Oude WordPress-URLs van vóór de redesign → nieuwe pagina's (301).
 # Ruimt 404's in Search Console op en behoudt eventuele link-waarde.
-#
-# TODO: vul aan met de exacte lijst uit Search Console →
-#       Pagina's → "Niet gevonden (404)". Formaat:  /oude-url/  /nieuwe-url/  301
+# Specifieke regels boven wildcards (eerste match wint).
 
-/contact/            /#contact              301
-/afspraak-maken/     /#contact              301
-/reparaties/*        /computer-reparatie/   301
+# Contact / afspraak
+/contact/                     /#contact               301
+/afspraak-maken/              /#contact               301
+/actie/*                      /#contact               301
+
+# Reparatie-pagina's (nokia, iphone, sony, …)
+/reparaties/                  /computer-reparatie/    301
+/reparaties/*                 /computer-reparatie/    301
+
+# Diensten / beleid
+/andere-diensten/             /#diensten              301
+/privacybeleid/               /privacy-policy/        301
+/klachten-regeling/           /algemene-voorwaarden/  301
