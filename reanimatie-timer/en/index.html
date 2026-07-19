@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../assets/img/reanimatie-timer-icon.jpg">
+
+  <!-- SEO: primary -->
+  <title>CPR Timer — Free CPR App for First Responders | iPhone &amp; iPad</title>
+  <meta name="description" content="Download CPR Timer (Reanimatie Timer) free for iPhone and iPad. Professional CPR app with automatic time tracking, sets, shock logging and voice alerts. Built by an active firefighter.">
+  <meta name="keywords" content="CPR timer app, CPR app firefighter, first aid app, resuscitation timer, AED timer, EMS app, iOS CPR app, free CPR timer, iPhone resuscitation app, iPad CPR">
+  <meta name="author" content="Benjamin Ootjers — BennIT">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#EF4444">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/en/">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="nl" href="https://bennit.nl/reanimatie-timer/">
+  <link rel="alternate" hreflang="en" href="https://bennit.nl/reanimatie-timer/en/">
+  <link rel="alternate" hreflang="x-default" href="https://bennit.nl/reanimatie-timer/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bennit.nl/reanimatie-timer/en/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="BennIT">
+  <meta property="og:title" content="CPR Timer — Free CPR App for First Responders">
+  <meta property="og:description" content="Download free for iPhone and iPad. Automatic time tracking, sets, shocks and voice alerts — so you can focus on the patient. Built by an active firefighter.">
+  <meta property="og:image" content="https://bennit.nl/assets/img/reanimatie-timer-icon.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="CPR Timer — app icon">
+
+  <!-- Twitter/X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CPR Timer — Free CPR App for First Responders">
+  <meta name="twitter:description" content="Professional CPR timer for firefighters, first aid and EMS. Free download for iPhone and iPad.">
+  <meta name="twitter:image" content="https://bennit.nl/assets/img/reanimatie-timer-icon.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareApplication", "MobileApplication"],
+    "name": "Reanimatie Timer",
+    "alternateName": "CPR Timer",
+    "description": "Professional CPR timer app for firefighters, first aid, and EMS. Automatic time tracking, set logging, shock registration and voice alerts. Completely free to download for iPhone and iPad.",
+    "applicationCategory": "MedicalApplication",
+    "operatingSystem": "iOS 17.5 or later",
+    "url": "https://bennit.nl/reanimatie-timer/en/",
+    "downloadUrl": "https://apps.apple.com/app/reanimatie-timer/id6740523358",
+    "inLanguage": ["nl-NL", "en-US"],
+    "isAccessibleForFree": true,
+    "image": "https://bennit.nl/assets/img/reanimatie-timer-icon.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Benjamin Ootjers",
+      "jobTitle": "iOS Developer & Active Firefighter",
+      "worksFor": { "@type": "Organization", "name": "BennIT", "url": "https://bennit.nl" }
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "https://apps.apple.com/app/reanimatie-timer/id6740523358"
+    }
+  }
+  </script>
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0D0F11;
+      --charcoal: #161A1F;
+      --surface:  #1E2329;
+      --border:   rgba(255,255,255,0.07);
+      --white:    #F3F4F6;
+      --muted:    #9CA3AF;
+      --orange:   #F97316;
+      --red:      #EF4444;
+      --red-d:    #DC2626;
+      --red-soft: rgba(239,68,68,0.1);
+      --green:    #22C55E;
+      --font: 'Space Grotesk', system-ui, sans-serif;
+      --r: 16px; --r-sm: 10px; --max: 1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--black); color: var(--white); line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+    a { text-decoration: none; color: inherit; }
+    h1,h2,h3,h4 { font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
+    em { font-style: normal; color: var(--red); }
+
+    /* NAV */
+    .nav { position: fixed; inset: 0 0 auto 0; z-index: 100; padding: 18px 0; border-bottom: 1px solid transparent; transition: all 0.3s; }
+    .nav.scrolled { background: rgba(13,15,17,0.92); backdrop-filter: blur(20px); border-bottom-color: var(--border); padding: 12px 0; }
+    .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+    .nav-inner .logo { justify-self: center; }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+    .nav-lang-btn { font-size: 0.82rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; transition: color 0.2s, border-color 0.2s; }
+    .nav-lang-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .nav-right { display: flex; align-items: center; gap: 12px; justify-self: end; }
+    .logo { display: inline-flex; align-items: center; }
+    .logo-img { height: 32px; width: auto; display: block; }
+    .app-icon { width: 96px; height: 96px; border-radius: 22px; display: block; margin: 0 auto 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 26px; border-radius: var(--r-sm); font-family: var(--font); font-size: 0.9rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; white-space: nowrap; }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-primary:hover { background: var(--red-d); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(239,68,68,0.38); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--white); background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.18); }
+    .btn-appstore { display: inline-flex; align-items: center; gap: 12px; background: var(--white); color: #111; padding: 13px 24px; border-radius: var(--r-sm); font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
+    .btn-appstore:hover { background: #e5e7eb; transform: translateY(-1px); box-shadow: 0 10px 28px rgba(255,255,255,0.12); }
+    .btn-appstore svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .btn-appstore-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .btn-appstore-text small { font-size: 0.7rem; font-weight: 500; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.06em; }
+    .btn-appstore-text strong { font-size: 1rem; }
+
+    /* HERO */
+    .hero { min-height: 100svh; display: flex; align-items: center; padding: 130px 0 80px; position: relative; overflow: hidden; }
+    .hero-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(239,68,68,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(239,68,68,0.04) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 10%, transparent 72%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 10%, transparent 72%); }
+    .hero-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 65%); left: 50%; top: 45%; transform: translate(-50%, -50%); pointer-events: none; animation: glowPulse 5s ease-in-out infinite; }
+    @keyframes glowPulse { 0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.06); } }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; text-align: center; }
+    .hero-audience { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .audience-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--red-soft); border: 1px solid rgba(239,68,68,0.22); color: var(--red); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 13px; border-radius: 100px; margin-bottom: 28px; }
+    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: blink 1.6s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero-title { font-size: clamp(3rem, 6vw, 5.4rem); letter-spacing: -0.035em; margin-bottom: 24px; }
+    .hero-sub { color: var(--muted); font-size: 1.1rem; line-height: 1.75; max-width: 580px; margin: 0 auto 28px; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: var(--muted); }
+    .hero-meta-item svg { width: 15px; height: 15px; color: var(--green); flex-shrink: 0; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .hero-app-name { font-size: clamp(1.6rem, 3.4vw, 2.6rem); font-weight: 800; letter-spacing: -0.04em; color: var(--white); margin-bottom: 14px; }
+    .hero-app-name em { color: var(--red); font-style: normal; }
+
+    /* SECTIONS */
+    .section { padding: 112px 0; }
+    .section-tag { display: inline-block; color: var(--red); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .section-tag.orange { color: var(--orange); }
+    .section-title { font-size: clamp(2rem, 3.8vw, 3.2rem); margin-bottom: 18px; }
+    .section-sub { color: var(--muted); font-size: 0.975rem; line-height: 1.8; }
+    .section-header { max-width: 580px; margin-bottom: 64px; }
+    .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+    /* PROBLEM */
+    .problem-section { background: var(--charcoal); }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .problem-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+    .problem-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); font-size: 0.88rem; color: var(--muted); }
+    .problem-item svg { width: 16px; height: 16px; color: var(--red); flex-shrink: 0; }
+    .problem-conclusion { margin-top: 28px; padding: 20px 22px; background: var(--red-soft); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r-sm); font-size: 0.92rem; color: var(--white); line-height: 1.65; }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .feature-card { background: var(--charcoal); border: 1px solid var(--border); border-radius: var(--r); padding: 32px 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+    .feature-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); background: linear-gradient(140deg, rgba(239,68,68,0.06), transparent 55%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .feature-card:hover { border-color: rgba(239,68,68,0.3); transform: translateY(-4px); box-shadow: 0 24px 48px rgba(0,0,0,0.3); }
+    .feature-card:hover::after { opacity: 1; }
+    .feature-icon { width: 42px; height: 42px; color: var(--red); margin-bottom: 20px; }
+    .feature-icon svg { width: 100%; height: 100%; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+    .feature-card p { font-size: 0.865rem; color: var(--muted); line-height: 1.72; }
+    .feature-sub-list { margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+    .feature-sub-list li { font-size: 0.82rem; color: rgba(156,163,175,0.75); display: flex; align-items: center; gap: 7px; list-style: none; }
+    .feature-sub-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; opacity: 0.7; }
+
+    /* DESIGNED FOR */
+    .design-section { background: var(--charcoal); }
+    .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .design-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .design-pill { padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); transition: border-color 0.25s; }
+    .design-pill:hover { border-color: rgba(239,68,68,0.28); }
+    .design-pill-icon { width: 28px; height: 28px; color: var(--red); margin-bottom: 10px; }
+    .design-pill-icon svg { width: 100%; height: 100%; }
+    .design-pill h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 4px; }
+    .design-pill p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* AUDIENCE */
+    .audience-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .audience-card { text-align: center; padding: 28px 16px; background: var(--charcoal); border: 1px solid var(--border); border-radius: var(--r); transition: all 0.25s; }
+    .audience-card:hover { border-color: rgba(249,115,22,0.32); transform: translateY(-3px); }
+    .audience-card-icon { width: 38px; height: 38px; margin: 0 auto 14px; color: var(--orange); }
+    .audience-card-icon svg { width: 100%; height: 100%; }
+    .audience-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+    .audience-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+
+    /* USE CASES */
+    .usecases-section { background: var(--charcoal); }
+    .usecases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .usecase-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); font-size: 0.855rem; color: var(--muted); transition: all 0.2s; }
+    .usecase-item:hover { border-color: rgba(239,68,68,0.25); color: var(--white); }
+    .usecase-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; opacity: 0.7; }
+
+    /* DEVELOPER STORY */
+    .story-section { position: relative; overflow: hidden; }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .story-quote { font-size: clamp(1.3rem, 2.2vw, 1.65rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.45; color: var(--white); margin-bottom: 24px; }
+    .story-quote em { color: var(--orange); }
+    .story-details { display: flex; flex-direction: column; gap: 14px; }
+    .story-detail { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--charcoal); border: 1px solid var(--border); border-radius: var(--r-sm); }
+    .story-detail-icon { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+    .story-detail-icon svg { width: 100%; height: 100%; }
+    .story-detail p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    .story-detail strong { color: var(--white); }
+
+    /* PRICING */
+    .pricing-section { background: var(--charcoal); }
+    .pricing-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto; }
+    .pricing-card { padding: 36px 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); }
+    .pricing-card.featured { border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.04); }
+    .pricing-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .pricing-label.orange { color: var(--orange); }
+    .pricing-price { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 6px; }
+    .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .pricing-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+    .pricing-features { display: flex; flex-direction: column; gap: 8px; }
+    .pricing-feature { display: flex; align-items: center; gap: 10px; font-size: 0.855rem; color: var(--muted); }
+    .pricing-feature svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; }
+
+    /* DOWNLOAD CTA */
+    .download-section { position: relative; padding: 112px 0; text-align: center; overflow: hidden; }
+    .download-orb { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 65%); left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+    .download-content { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+    .stars { display: flex; justify-content: center; gap: 4px; margin-bottom: 20px; }
+    .stars svg { width: 20px; height: 20px; color: #FBBF24; fill: currentColor; }
+    .download-content h2 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); margin-bottom: 16px; }
+    .download-content > p { color: var(--muted); font-size: 1rem; margin-bottom: 36px; }
+    .free-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: var(--green); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 32px; }
+
+    /* LICENSE FORM */
+    .license-form-wrap { max-width: 640px; margin: 0 auto; }
+    .license-form { display: flex; flex-direction: column; gap: 20px; }
+    .lf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .lf-group { display: flex; flex-direction: column; gap: 8px; }
+    .lf-group label { font-size: 0.82rem; font-weight: 600; color: var(--white); letter-spacing: 0.02em; }
+    .lf-required { color: var(--red); }
+    .lf-group input, .lf-group textarea { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); color: var(--white); font-family: var(--font); font-size: 0.92rem; padding: 12px 16px; transition: border-color 0.2s; outline: none; width: 100%; resize: vertical; }
+    .lf-group input::placeholder, .lf-group textarea::placeholder { color: var(--muted); }
+    .lf-group input:focus, .lf-group textarea:focus { border-color: rgba(239,68,68,0.5); }
+    .lf-group input.invalid, .lf-group textarea.invalid { border-color: var(--red); }
+    .lf-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--red); color: #fff; border: none; border-radius: var(--r-sm); font-family: var(--font); font-size: 0.95rem; font-weight: 700; padding: 14px 28px; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 4px; }
+    .lf-btn:hover:not(:disabled) { background: var(--red-d); transform: translateY(-1px); }
+    .lf-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .lf-btn-loader svg { animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .lf-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--red); border-radius: var(--r-sm); padding: 12px 16px; font-size: 0.88rem; }
+    .lf-success { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; padding: 48px 32px; background: var(--surface); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--r); }
+    .lf-success svg { width: 48px; height: 48px; color: var(--green); stroke: var(--green); }
+    .lf-success p { font-size: 1rem; color: var(--white); line-height: 1.6; }
+
+    /* FAQ */
+    .faq-section { background: var(--charcoal); }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; max-width: 720px; margin: 0 auto; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: rgba(239,68,68,0.25); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; cursor: pointer; list-style: none; font-weight: 600; font-size: 0.95rem; color: var(--white); transition: color 0.2s; }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q:hover { color: var(--red); }
+    .faq-chevron { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.25s; color: var(--muted); }
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-a { padding: 0 24px 20px; font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+    .faq-a a { color: var(--red); }
+    .faq-a strong { color: var(--white); }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); }
+    .footer-inner a { transition: color 0.2s; }
+    .footer-inner a:hover { color: var(--white); }
+    .footer-links { display: flex; gap: 20px; align-items: center; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .features-grid .feature-card:nth-child(1) { transition-delay: 0.05s; }
+    .features-grid .feature-card:nth-child(2) { transition-delay: 0.12s; }
+    .features-grid .feature-card:nth-child(3) { transition-delay: 0.19s; }
+    .features-grid .feature-card:nth-child(4) { transition-delay: 0.26s; }
+    .features-grid .feature-card:nth-child(5) { transition-delay: 0.33s; }
+    .features-grid .feature-card:nth-child(6) { transition-delay: 0.40s; }
+    .audience-grid .audience-card:nth-child(1) { transition-delay: 0.04s; }
+    .audience-grid .audience-card:nth-child(2) { transition-delay: 0.10s; }
+    .audience-grid .audience-card:nth-child(3) { transition-delay: 0.16s; }
+    .audience-grid .audience-card:nth-child(4) { transition-delay: 0.22s; }
+    .audience-grid .audience-card:nth-child(5) { transition-delay: 0.28s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .audience-grid { grid-template-columns: repeat(3, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .problem-grid, .design-grid, .story-grid { grid-template-columns: 1fr; gap: 48px; }
+      .usecases-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-cards { max-width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .design-pillars { grid-template-columns: 1fr; }
+      .usecases-grid { grid-template-columns: 1fr; }
+      .pricing-cards { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .hero-meta { flex-direction: column; gap: 10px; }
+      .lf-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        BennIT.nl
+      </a>
+      <a href="../../" class="logo"><img src="../../assets/img/logo-light.svg" alt="BennIT — Makes IT Work" class="logo-img"></a>
+      <div class="nav-right">
+        <a href="../" class="nav-lang-btn">NL</a>
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">Download free</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <picture><source srcset="../../assets/img/reanimatie-timer-icon.webp" type="image/webp"><img src="../../assets/img/reanimatie-timer-icon.jpg" alt="CPR Timer app icon" class="app-icon" loading="lazy"></picture>
+        <div class="hero-audience">
+          <span class="audience-tag">Fire Department</span>
+          <span class="audience-tag">First Aid</span>
+          <span class="audience-tag">EMS</span>
+          <span class="audience-tag">Emergency Response</span>
+          <span class="audience-tag">Training</span>
+        </div>
+        <h1 class="hero-app-name">Reanimatie <em>Timer</em></h1>
+        <p class="hero-title">Structure during<br><em>resuscitations.</em></p>
+        <p class="hero-sub">
+          Professional CPR timer for first responders. Automatic time tracking, sets, shocks and voice alerts — so you can focus on the patient.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Free download
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            No personal data required
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Built by an active firefighter
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn-appstore" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="btn-appstore-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a href="#features" class="btn btn-ghost">See features &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section problem-section">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="reveal">
+          <div class="section-tag">The problem</div>
+          <h2 class="section-title">During a resuscitation,<br>a lot happens at once.</h2>
+          <p class="section-sub">Time tracking during CPR is often done with a simple stopwatch, loose notes, or from memory. That takes attention — and increases the risk of errors or missed moments.</p>
+          <div class="problem-conclusion">
+            <strong>CPR Timer takes over all time management</strong> and provides calm, structure and overview during the incident.
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="problem-list">
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Tracking time</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Performing chest compressions</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Ventilating</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Rhythm checks at the right moment</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Logging shocks</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Communicating with colleagues</div>
+            <div class="problem-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Handover to ambulance or hospital</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Features</div>
+        <h2 class="section-title">What CPR Timer<br>does for you.</h2>
+        <p class="section-sub">Designed for the field. Minimal interaction, maximum support.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>Smart CPR timer</h3>
+          <p>Automatically tracks total resuscitation time and current set time. Visible at a glance:</p>
+          <ul class="feature-sub-list">
+            <li>How long the resuscitation has been running</li>
+            <li>When the next set starts</li>
+            <li>When a rhythm check is coming up</li>
+          </ul>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3>Shock registration</h3>
+          <p>Log shocks with a single tap. The app keeps track of:</p>
+          <ul class="feature-sub-list">
+            <li>Total number of shocks delivered</li>
+            <li>Exact time each shock was given</li>
+            <li>Which set it occurred in</li>
+          </ul>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+          <h3>Automatic sets &amp; cycles</h3>
+          <p>Sets, rotation moments and progress are tracked automatically — no manual counting during the call.</p>
+          <ul class="feature-sub-list">
+            <li>Set count tracked</li>
+            <li>Rotation moments logged</li>
+            <li>Structure during long incidents</li>
+          </ul>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+          <h3>Voice alerts</h3>
+          <p>Audio cues so you look at the screen less:</p>
+          <ul class="feature-sub-list">
+            <li>"At 1 minute" (halfway)</li>
+            <li>"15 seconds remaining"</li>
+            <li>"Rhythm check / rotate"</li>
+          </ul>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h3>Clear session log</h3>
+          <p>A full overview after the incident for handover, evaluation and debriefing:</p>
+          <ul class="feature-sub-list">
+            <li>Timeline of events</li>
+            <li>Shocks, sets and duration</li>
+            <li>Ideal for reporting</li>
+          </ul>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19V6l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg></div>
+          <h3>Metronome (100–120 BPM)</h3>
+          <p>Built-in metronome for correct compression rate. Adjustable from 100 to 120 BPM, in line with adult and paediatric CPR guidelines.</p>
+          <ul class="feature-sub-list">
+            <li>Adjustable 100–120 BPM</li>
+            <li>Includes reference to paediatric CPR protocol (PDF in app)</li>
+            <li>Total time adjustable for delays</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGNED FOR THE FIELD -->
+  <section class="section design-section">
+    <div class="container">
+      <div class="design-grid">
+        <div class="reveal">
+          <div class="section-tag">Design</div>
+          <h2 class="section-title">CPR Timer,<br>built for the field.</h2>
+          <p class="section-sub">Not designed by designers behind a desk, but from real operational experience. Every decision was made deliberately for use under pressure.</p>
+        </div>
+        <div class="design-pillars reveal">
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <h4>Large buttons</h4>
+            <p>Operable with gloves on</p>
+          </div>
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h4>Instantly readable</h4>
+            <p>Large, clear display for use under high pressure</p>
+          </div>
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+            <h4>Low-light conditions</h4>
+            <p>Usable in darkness or night incidents</p>
+          </div>
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h4>Minimal distraction</h4>
+            <p>No unnecessary screens or actions during the call</p>
+          </div>
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+            <h4>Audio feedback</h4>
+            <p>Voice alerts so your eyes stay on the patient</p>
+          </div>
+          <div class="design-pill">
+            <div class="design-pill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
+            <h4>One press to start</h4>
+            <p>All timers start simultaneously, the rest follows automatically</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS IT FOR -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag orange">Who it's for</div>
+        <h2 class="section-title">Designed for<br>professional first responders.</h2>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4>Fire Department</h4>
+          <p>Support for crews during CPR calls and medical assists</p>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h4>Emergency Response Teams</h4>
+          <p>Structure during drills and real incidents in the workplace</p>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <h4>First Aid Teams</h4>
+          <p>During training sessions, events and emergency assistance</p>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+          <h4>EMS / Paramedics</h4>
+          <p>Supporting time tracking tool during complex resuscitations</p>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <h4>Training &amp; Education</h4>
+          <p>For CPR courses, scenario drills, exams and practical training</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="section usecases-section">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag">Use cases</div>
+        <h2 class="section-title">Ready for every situation.</h2>
+      </div>
+      <div class="usecases-grid reveal">
+        <div class="usecase-item">CPR during fire department incidents</div>
+        <div class="usecase-item">Ambulance assists</div>
+        <div class="usecase-item">First aid posts and events</div>
+        <div class="usecase-item">Training evenings and drills</div>
+        <div class="usecase-item">Mass casualty scenarios</div>
+        <div class="usecase-item">Emergency response training</div>
+        <div class="usecase-item">Medical simulations</div>
+        <div class="usecase-item">Education and exams</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPER STORY -->
+  <section class="section story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="reveal">
+          <div class="section-tag orange">Background</div>
+          <h2 class="section-title" style="font-size: clamp(1.5rem, 2.8vw, 2.2rem); margin-bottom: 20px;">Why CPR Timer<br>was built.</h2>
+          <p class="story-quote">
+            "I built this because I needed it myself during calls."<br>
+            <em>— Benjamin, active firefighter</em>
+          </p>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.8;">
+            The app grew out of real operational experience. No complex medical software, just a fast and intuitive tool that provides immediate support during an actual resuscitation. Continuously developed based on feedback from the field.
+          </p>
+        </div>
+        <div class="story-details reveal">
+          <div class="story-detail">
+            <div class="story-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Built from real operational experience</strong> — not based on assumptions, but on what is actually needed in the field.</p>
+          </div>
+          <div class="story-detail">
+            <div class="story-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Continuously improving</strong> — new features and improvements are actively released based on feedback from users in the field.</p>
+          </div>
+          <div class="story-detail">
+            <div class="story-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p><strong>Privacy by design</strong> — session data stays local on the device, no personal data required, no ads, no accounts. Core functionality fully offline. <a href="transparantie/" style="color: var(--orange); font-size: 0.85em; white-space: nowrap;">See what we collect →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section pricing-section">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag orange">Availability</div>
+        <h2 class="section-title">Free to use.<br>License for intensive use.</h2>
+        <p class="section-sub">The timer, metronome and all voice alerts always work for free — without limits during a real call. A resuscitation is never paywalled. A license unlocks the full session history in the log and is intended for structural use within an organisation.</p>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card reveal">
+          <div class="pricing-label">Free</div>
+          <div class="pricing-price">€0</div>
+          <div class="pricing-desc">Timer, metronome and voice alerts always work, unlimited. Ideal for occasional use and training.</div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Timer &amp; metronome always free</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>All features included</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Log: last 3 sessions</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No account required</div>
+          </div>
+        </div>
+        <div class="pricing-card featured reveal">
+          <div class="pricing-label orange">License</div>
+          <div class="pricing-price" style="color: var(--orange);">Unlimited</div>
+          <div class="pricing-desc">For fire departments, emergency response teams and frequent use during incidents and training.</div>
+          <div class="pricing-features">
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited use</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full session history in log</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>All future updates</div>
+            <div class="pricing-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Supports further development</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENSE REQUEST FORM -->
+  <section class="section" id="license">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag orange">Request a license</div>
+        <h2 class="section-title">Unlimited use<br>for your organisation.</h2>
+        <p class="section-sub">Fill in the form and we'll get in touch with the options and pricing for your team or organisation.</p>
+      </div>
+      <div class="license-form-wrap reveal">
+        <form class="license-form" id="licenseForm" novalidate>
+          <div class="lf-row">
+            <div class="lf-group">
+              <label for="org_name">Organisation name <span class="lf-required">*</span></label>
+              <input type="text" id="org_name" name="org_name" placeholder="e.g. Amsterdam Fire Department" required>
+            </div>
+            <div class="lf-group">
+              <label for="contact_name">Your name</label>
+              <input type="text" id="contact_name" name="contact_name" placeholder="Optional">
+            </div>
+          </div>
+          <div class="lf-group">
+            <label for="lic_email">Email address <span class="lf-required">*</span></label>
+            <input type="email" id="lic_email" name="email" placeholder="you@organisation.com" required>
+          </div>
+          <div class="lf-group">
+            <label for="message">Message / details</label>
+            <textarea id="message" name="message" rows="4" placeholder="e.g. number of users, type of use..."></textarea>
+          </div>
+          <div class="lf-error" id="lfError" style="display:none;"></div>
+          <button type="submit" class="lf-btn" id="lfSubmit">
+            <span class="lf-btn-text">Request license</span>
+            <span class="lf-btn-loader" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+              Sending...
+            </span>
+          </button>
+        </form>
+        <div class="lf-success" id="lfSuccess" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+          <p>Thank you! Your request has been received. You will receive a confirmation by email.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header center reveal">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Everything you want to know.</h2>
+      </div>
+      <div class="faq-list">
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">Is the CPR Timer app free?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">Yes, the app is free to download from the App Store. The timer, metronome and all voice alerts <strong>always work for free</strong> — without limits during a real call. The free version stores the last 3 sessions in the log. An organisation license unlocks the full session history.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">What does CPR Timer actually do?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">The app provides: automatic time tracking of total CPR time and current set time, shock logging with timestamp and set number, voice alerts at rotation moments and rhythm checks, an adjustable metronome (100–120 BPM), and a clear log for handover to the ambulance or debriefing.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">Who is the app designed for?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">The app is designed for professional first responders: <strong>fire departments</strong>, <strong>emergency response teams</strong>, <strong>first aid associations</strong>, <strong>EMS/paramedics</strong> and CPR trainers. Also ideal for training evenings, drills and exams.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">Does the app work without internet?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">Yes, the core functionality works fully offline — even on scene without signal. Session data is stored exclusively on the device. No personal data is collected. The app sends fully anonymous usage statistics on each launch (no device ID, no email, no session data). This can be disabled via Settings → Privacy.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">Which devices are supported?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">CPR Timer is available for <strong>iPhone and iPad</strong> running iOS 17.5 or later. Download free from the Apple App Store — 10.4 MB, no account required.</div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">How do I request a license for my organisation?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-a">Fill in the <a href="#license">license request form</a> on this page, or email <a href="mailto:licenties@bennit.nl">licenties@bennit.nl</a>. We'll get back to you with options and pricing for your team or organisation.</div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="download-section">
+    <div class="download-orb"></div>
+    <div class="container">
+      <div class="download-content reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="free-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>
+          Free to download
+        </div>
+        <h2>Ready for the<br><em>next call?</em></h2>
+        <p>Download CPR Timer and give your team the structure it needs.</p>
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn-appstore" target="_blank" rel="noopener" style="display: inline-flex;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="btn-appstore-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <p style="margin-top: 20px; font-size: 0.78rem; color: rgba(156,163,175,0.5);">Requires iOS 17.5 or later · 10.4 MB · Free</p>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>Developed by <a href="../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Active firefighter</span>
+      <div class="footer-links">
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../../#contact">Contact</a>
+        <a href="updates/">Updates</a>
+        <a href="privacy/">Privacy</a>
+        <a href="transparantie/">Transparency</a>
+        <a href="../../">BennIT.nl</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (!t) return; e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+  <script>
+    const SUPABASE_URL = 'https://ndxojnoctdsjcexpnuee.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_KMpMEv6I9jg1P0KAc0C1rg_hkdLYVsp';
+    const EDGE_FN_URL  = SUPABASE_URL + '/functions/v1/notify-new-request';
+
+    const form      = document.getElementById('licenseForm');
+    const btnText   = document.querySelector('.lf-btn-text');
+    const btnLoader = document.querySelector('.lf-btn-loader');
+    const btn       = document.getElementById('lfSubmit');
+    const errBox    = document.getElementById('lfError');
+    const success   = document.getElementById('lfSuccess');
+
+    function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const orgName     = form.org_name.value.trim();
+      const contactName = form.contact_name.value.trim();
+      const email       = form.lic_email.value.trim();
+      const message     = form.message.value.trim();
+
+      let valid = true;
+      [form.org_name, form.lic_email].forEach(f => f.classList.remove('invalid'));
+      errBox.style.display = 'none';
+
+      if (!orgName) { form.org_name.classList.add('invalid'); valid = false; }
+      if (!email || !validateEmail(email)) { form.lic_email.classList.add('invalid'); valid = false; }
+      if (!valid) {
+        errBox.textContent = 'Please fill in the required fields correctly.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.style.display = 'none';
+      btnLoader.style.display = 'flex';
+
+      const record = { org_name: orgName, email };
+      if (contactName) record.contact_name = contactName;
+      if (message)     record.message = message;
+
+      try {
+        await Promise.all([
+          fetch(SUPABASE_URL + '/rest/v1/license_requests', {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+            body: JSON.stringify(record)
+          }).then(r => { if (!r.ok) throw new Error('db'); }),
+          fetch(EDGE_FN_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ record })
+          }).catch(() => {})
+        ]);
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } catch {
+        errBox.textContent = 'Something went wrong. Please try again or email licenties@bennit.nl.';
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

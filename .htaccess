@@ -1,5 +1,8 @@
 # BennIT — Apache config
 
+# Aangepaste foutpagina's
+ErrorDocument 404 /404.html
+
 # MIME types
 AddType image/svg+xml .svg .svgz
 AddType image/x-icon .ico

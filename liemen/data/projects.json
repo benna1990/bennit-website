@@ -1,0 +1,165 @@
+[
+    {
+        "id": "badkamer-1",
+        "title": "Volledige badkamerrenovatie",
+        "type": "Particulier",
+        "description": "Demontage, nieuw leidingwerk, tegelwerk en afwerking — van een donkere ruimte naar een warme, lichte badkamer.",
+        "keywords": "badkamerrenovatie, tegelwerk, leidingwerk, Diemen",
+        "featured": true,
+        "order": 1,
+        "images": [
+            {
+                "src": "badkamer-voor.jpg",
+                "label": "Voor",
+                "alt": "Badkamer vóór de renovatie"
+            },
+            {
+                "src": "badkamer-na.jpg",
+                "label": "Na",
+                "alt": "Badkamer na de renovatie met ledspiegel en groen tegelwerk"
+            }
+        ]
+    },
+    {
+        "id": "badkamer-2",
+        "title": "Ruime badkamer met inloopdouche",
+        "type": "Particulier",
+        "description": "Van een gedateerde ruimte naar een luxe badkamer met inloopdouche, dubbele wastafel en strak tegelwerk.",
+        "keywords": "badkamer, inloopdouche, dubbele wastafel, renovatie",
+        "featured": true,
+        "order": 2,
+        "images": [
+            {
+                "src": "badkamer2-voor.jpg",
+                "label": "Voor",
+                "alt": "Badkamer vóór de renovatie met zwart-wit tegelvloer"
+            },
+            {
+                "src": "badkamer2-na.jpg",
+                "label": "Na",
+                "alt": "Luxe badkamer na de renovatie met inloopdouche en dubbele wastafel"
+            }
+        ]
+    },
+    {
+        "id": "toilet-1",
+        "title": "Volledige toiletrenovatie",
+        "type": "Particulier",
+        "description": "Compleet vernieuwd, met een verlaagd plafond, inbouwspots en een plafondhoge deur.",
+        "keywords": "toiletrenovatie, verlaagd plafond, inbouwspots",
+        "featured": true,
+        "order": 3,
+        "images": [
+            {
+                "src": "toilet1-voor.jpg",
+                "label": "Voor",
+                "alt": "Toilet vóór de renovatie"
+            },
+            {
+                "src": "toilet1-na.jpg",
+                "label": "Na",
+                "alt": "Toilet na de renovatie met betonlook-tegels"
+            }
+        ]
+    },
+    {
+        "id": "wandafwerking",
+        "title": "Kunststof wandafwerking buiten",
+        "type": "Particulier",
+        "description": "Houtlook gevelbekleding geplaatst, boeideel vernieuwd en nieuwe elektra voor de buitenspots aangelegd.",
+        "keywords": "gevelbekleding, houtlook lamellen, boeideel, buitenspots",
+        "featured": true,
+        "order": 4,
+        "images": [
+            {
+                "src": "wand-voor.jpg",
+                "label": "Voor",
+                "alt": "Buitenmuur vóór de wandafwerking"
+            },
+            {
+                "src": "wand-na.jpg",
+                "label": "Na",
+                "alt": "Buitenmuur na plaatsing van houtlook lamellen en wandlampen"
+            }
+        ]
+    },
+    {
+        "id": "trapombouw",
+        "title": "Scheidingswand & trapombouw",
+        "type": "Zakelijk",
+        "description": "Scheidingswand en trapombouw gerealiseerd, inclusief nieuwe stopcontacten en deuren.",
+        "keywords": "scheidingswand, trapombouw, utiliteitsbouw, zakelijk",
+        "featured": false,
+        "order": 5,
+        "images": [
+            {
+                "src": "trap-1.jpg",
+                "label": "",
+                "alt": "Ruimte met trapombouw en scheidingswand"
+            },
+            {
+                "src": "trap-2.jpg",
+                "label": "",
+                "alt": "Scheidingswand met deur en strak stucwerk"
+            },
+            {
+                "src": "trap-3.jpg",
+                "label": "",
+                "alt": "Afgewerkte ruimte met visgraatvloer en inbouwspots"
+            }
+        ]
+    },
+    {
+        "id": "zolder",
+        "title": "Complete zolderrenovatie",
+        "type": "Particulier",
+        "description": "Omgebouwd tot twee ruimtes: geïsoleerd, nieuwe elektra en scheidingswanden met deuren.",
+        "keywords": "zolderrenovatie, isolatie, scheidingswanden, elektra",
+        "featured": false,
+        "order": 6,
+        "images": [
+            {
+                "src": "zolder-constructie.jpg",
+                "label": "Voor",
+                "alt": "Zolder met nieuwe houten draagconstructie in aanbouw"
+            },
+            {
+                "src": "zolder-afgewerkt.jpg",
+                "label": "Na",
+                "alt": "Afgewerkte zolder met twee aparte ruimtes"
+            }
+        ]
+    },
+    {
+        "id": "toilet-2",
+        "title": "Toiletrenovatie met tegelwerk",
+        "type": "Particulier",
+        "description": "Strak tegelwerk, een zwevend toilet en een terrazzovloer.",
+        "keywords": "toiletrenovatie, tegelwerk, zwevend toilet, terrazzo",
+        "featured": false,
+        "order": 7,
+        "images": [
+            {
+                "src": "toilet2.jpg",
+                "label": "",
+                "alt": "Gerenoveerd toilet met groen tegelwerk en zwevend toilet"
+            }
+        ]
+    },
+    {
+        "id": "kapstok",
+        "title": "Kapstok & lattenwand",
+        "type": "Particulier",
+        "description": "Kapstok, lattenwand en wandplank op maat, met geïntegreerde ledverlichting.",
+        "keywords": "lattenwand, kapstok, ledverlichting, maatwerk",
+        "featured": false,
+        "order": 8,
+        "images": [
+            {
+                "src": "kapstok.jpg",
+                "label": "",
+                "alt": "Hal met houten lattenwand, kapstok en ledverlichting"
+            }
+        ]
+    }
+]

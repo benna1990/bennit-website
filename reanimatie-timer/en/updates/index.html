@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Updates — Reanimatie Timer | BennIT</title>
+  <meta name="description" content="Version history of the Reanimatie Timer app. What's new, what's improved?">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/en/updates/">
+  <link rel="alternate" hreflang="nl" href="https://bennit.nl/reanimatie-timer/updates/">
+  <link rel="alternate" hreflang="en" href="https://bennit.nl/reanimatie-timer/en/updates/">
+  <meta name="theme-color" content="#111315">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css?v=20260529">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+
+  <style>
+    .rt-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: background 0.3s, backdrop-filter 0.3s; }
+    .rt-nav.scrolled { background: rgba(17,19,21,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .rt-nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+    .nav-lang-btn { font-size: 0.82rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; transition: color 0.2s, border-color 0.2s; }
+    .nav-lang-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    .up-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .up-body { max-width: 680px; padding: 48px 0 120px; }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .release { display: grid; grid-template-columns: 160px 1fr; gap: 0 32px; position: relative; padding-bottom: 52px; }
+    .release:last-child { padding-bottom: 0; }
+    @media (max-width: 580px) {
+      .release { grid-template-columns: 1fr; gap: 8px; }
+      .release-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    }
+
+    /* Vertical line */
+    .release-meta { position: relative; padding-top: 4px; }
+    .release-meta::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      bottom: -52px;
+      background: var(--border);
+    }
+    .release:last-child .release-meta::after { display: none; }
+    @media (max-width: 580px) {
+      .release-meta::after { display: none; }
+    }
+
+    .release-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: 2px solid var(--black);
+      outline: 2px solid var(--orange);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 5px;
+    }
+    @media (max-width: 580px) {
+      .release-dot { position: static; transform: none; flex-shrink: 0; margin-top: 3px; }
+    }
+
+    .release-version {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 0;
+      text-align: right;
+      padding-right: 0;
+    }
+    @media (max-width: 580px) { .release-version { text-align: left; } }
+
+    .release-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.6;
+      text-align: right;
+      margin-top: 2px;
+    }
+    @media (max-width: 580px) { .release-date { text-align: left; } }
+
+    .release-content { padding-top: 2px; }
+    .release-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .release-content ul li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .release-content ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 0.75em;
+      top: 4px;
+    }
+    .release-content ul li strong { color: var(--white); }
+
+    /* Latest badge */
+    .latest-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(249,115,22,0.12);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: var(--orange);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+
+    /* Footer */
+    .rt-footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .rt-footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+    .rt-footer-inner a { transition: color 0.2s; }
+    .rt-footer-inner a:hover { color: var(--white); }
+    .rt-footer-links { display: flex; gap: 20px; }
+  </style>
+</head>
+<body>
+
+  <nav class="rt-nav scrolled" id="rtNav">
+    <div class="container">
+      <a href="../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Reanimatie Timer
+      </a>
+      <a href="../../../" class="logo"><img src="../../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <div class="nav-right"><a href="../../updates/" class="nav-lang-btn">NL</a><a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">Download free</a></div>
+    </div>
+  </nav>
+
+  <section class="up-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../">BennIT</a><span>/</span>
+        <a href="../">Reanimatie Timer</a><span>/</span>
+        <span>Updates</span>
+      </nav>
+      <div style="margin-top: 24px;">
+        <div class="section-tag" style="margin-bottom: 16px;">Version history</div>
+        <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px;">Updates</h1>
+        <p style="color: var(--muted); line-height: 1.7; max-width: 480px;">What's new in each version. Newest at the top.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="up-body">
+      <div class="timeline">
+
+        <!-- 1.2.1 -->
+        <div class="release">
+          <div class="release-meta">
+            <div class="release-dot"></div>
+            <div class="latest-badge">
+              <svg width="6" height="6" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+              Latest
+            </div>
+            <div class="release-version">Version 1.2.1</div>
+            <div class="release-date">June 2026</div>
+          </div>
+          <div class="release-content">
+            <ul>
+              <li>Minor improvements and bug fixes.</li>
+              <li>New page showing which anonymous data the app collects — <a href="../transparantie/" style="color: var(--orange);">view here</a>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 1.2 -->
+        <div class="release">
+          <div class="release-meta">
+            <div class="release-dot"></div>
+            <div class="release-version">Version 1.2</div>
+            <div class="release-date">June 2026</div>
+          </div>
+          <div class="release-content">
+            <ul>
+              <li><strong>Set time adjustable during the set</strong> — to sync smoothly with the ambulance.</li>
+              <li><strong>Improved metronome</strong> — stable, crisp ticks without stutters.</li>
+              <li>Metronome adjustable up to <strong>120 BPM</strong>, in line with the CPR guideline (100–120).</li>
+              <li>Smoother countdown ring and calmer colour transitions.</li>
+              <li>Choose at first launch: personal or shared phone — the guidance adapts accordingly.</li>
+              <li>Version history in the app, opened via 'Version' in the menu.</li>
+              <li>New setting: when the screen stays on. Sound signals also in the quick menu.</li>
+              <li>Optional, fully anonymous usage statistics — can be turned off via Settings → Privacy.</li>
+              <li>Various improvements and stability enhancements.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 1.1 -->
+        <div class="release">
+          <div class="release-meta">
+            <div class="release-dot"></div>
+            <div class="release-version">Version 1.1</div>
+            <div class="release-date">April 2026</div>
+          </div>
+          <div class="release-content">
+            <ul>
+              <li>Bug fixes and stability improvements.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="rt-footer">
+    <div class="container rt-footer-inner">
+      <span>Developed by <a href="../../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Active firefighter</span>
+      <div class="rt-footer-links">
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../privacy/">Privacy Statement</a>
+        <a href="../transparantie/">Transparency</a>
+        <a href="../">Reanimatie Timer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('rtNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+  </script>
+
+</body>
+</html>

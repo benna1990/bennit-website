@@ -1,0 +1,6 @@
+# Sleutelservice NH — alle crawlers welkom
+User-agent: *
+Disallow: /healthz
+Disallow: /api/
+
+Sitemap: https://www.sleutelnh.nl/sitemap.xml

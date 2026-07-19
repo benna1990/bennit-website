@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transparency — Reanimatie Timer | BennIT</title>
+  <meta name="description" content="What does BennIT see in the Reanimatie Timer app dashboard? Fully transparent: the exact data model, what we do and don't see, and a live example.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://bennit.nl/reanimatie-timer/en/transparantie/">
+  <link rel="alternate" hreflang="nl" href="https://bennit.nl/reanimatie-timer/transparantie/">
+  <link rel="alternate" hreflang="en" href="https://bennit.nl/reanimatie-timer/en/transparantie/">
+  <meta name="theme-color" content="#111315">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../style.css?v=20260529">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6V9HJ7L9SR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6V9HJ7L9SR');
+  </script>
+
+  <style>
+    /* Nav */
+    .rt-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: background 0.3s, backdrop-filter 0.3s; }
+    .rt-nav.scrolled { background: rgba(17,19,21,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .rt-nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+    .nav-back svg { width: 16px; height: 16px; }
+    .nav-lang-btn { font-size: 0.82rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; transition: color 0.2s, border-color 0.2s; }
+    .nav-lang-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    /* Layout */
+    .tr-hero { padding: 140px 0 60px; position: relative; overflow: hidden; }
+    .tr-hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .tr-body { max-width: 800px; padding: 48px 0 120px; }
+
+    /* Typography */
+    .tr-body h2 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 52px 0 16px; letter-spacing: -0.02em; }
+    .tr-body h2:first-child { margin-top: 0; }
+    .tr-body p { color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+    .tr-body a { color: var(--orange); }
+    .tr-body strong { color: var(--white); }
+    .tr-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* Demo banner */
+    .demo-banner {
+      background: rgba(249,115,22,0.08);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.82rem;
+      color: var(--orange);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .demo-banner svg { flex-shrink: 0; }
+
+    /* Data model table */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 20px 0; }
+    .data-table th { text-align: left; padding: 10px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--orange); border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    .data-table td:first-child { font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--white); white-space: nowrap; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table-wrap { background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+
+    /* Example row */
+    .example-row { background: var(--charcoal); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; margin: 20px 0; }
+    .example-row table { width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: 'Courier New', monospace; }
+    .example-row th { background: rgba(249,115,22,0.08); padding: 8px 12px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--orange); font-family: var(--font); border-bottom: 1px solid var(--border); white-space: nowrap; text-align: left; font-weight: 700; }
+    .example-row td { padding: 10px 12px; color: var(--muted); white-space: nowrap; }
+    .example-row td.val { color: var(--white); }
+
+    /* Wat-niet lijst */
+    .check-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 10px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .check-list li .icon-yes { color: #22c55e; flex-shrink: 0; margin-top: 2px; }
+    .check-list li .icon-no  { color: #ef4444; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── Nep-dashboard ── */
+    .demo-wrap { background: var(--charcoal); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-top: 8px; }
+    .demo-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    @media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2,1fr); } }
+    .kpi { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .kpi-val { font-size: 1.5rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
+    .kpi-label { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+
+    /* Daily bar chart */
+    .daily-chart { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .daily-chart-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+    .bar-row { display: flex; align-items: flex-end; gap: 2px; height: 60px; }
+    .bar-col { flex: 1; background: rgba(249,115,22,0.7); border-radius: 2px 2px 0 0; min-height: 3px; transition: background 0.2s; }
+    .bar-col:hover { background: var(--orange); }
+    .chart-dates { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--muted); margin-top: 6px; opacity: 0.6; }
+
+    /* Bar charts grid */
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 560px) { .charts-grid { grid-template-columns: 1fr; } }
+    .chart-card { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .chart-card-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 14px; }
+    .bar-item { margin-bottom: 10px; }
+    .bar-item:last-child { margin-bottom: 0; }
+    .bar-meta { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 4px; }
+    .bar-meta-label { color: var(--muted); }
+    .bar-meta-count { color: var(--muted); font-weight: 500; }
+    .bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--orange); border-radius: 3px; }
+
+    /* Provincie kaart placeholder + stad lijst */
+    .geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 560px) { .geo-grid { grid-template-columns: 1fr; } }
+    .prov-card { background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .prov-card-title { font-size: 0.8rem; font-weight: 600; color: var(--white); margin-bottom: 14px; }
+    .prov-note { font-size: 0.68rem; color: var(--muted); opacity: 0.6; margin-bottom: 12px; }
+    .hidden-note { font-size: 0.68rem; color: var(--muted); opacity: 0.55; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* Privacy waarborgen blokjes */
+    .waarborgen { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    @media (max-width: 560px) { .waarborgen { grid-template-columns: 1fr; } }
+    .waarborg { background: var(--charcoal); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .waarborg-title { font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .waarborg-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* Footer */
+    .rt-footer { border-top: 1px solid var(--border); padding: 36px 0; background: var(--charcoal); }
+    .rt-footer-inner { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+    .rt-footer-inner a { transition: color 0.2s; }
+    .rt-footer-inner a:hover { color: var(--white); }
+    .rt-footer-links { display: flex; gap: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="rt-nav scrolled" id="rtNav">
+    <div class="container">
+      <a href="../" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Reanimatie Timer
+      </a>
+      <a href="../../../" class="logo"><img src="../../../assets/img/logo-light.svg" alt="BennIT" class="logo-img"></a>
+      <div class="nav-right"><a href="../../transparantie/" class="nav-lang-btn">NL</a><a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 0.85rem;">Download free</a></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tr-hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container tr-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../../">BennIT</a><span>/</span>
+        <a href="../">Reanimatie Timer</a><span>/</span>
+        <span>Transparency</span>
+      </nav>
+      <div style="margin-top: 24px;">
+        <div class="section-tag" style="margin-bottom: 16px;">Open dashboard</div>
+        <h1 style="font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px;">This is what I see.<br>So do you.</h1>
+        <p style="color: var(--muted); max-width: 560px; line-height: 1.8; font-size: 1rem;">
+          The app collects anonymous usage statistics. I think you simply deserve to know what I see — not because I'm showing off, but because you have the right to check it. This page shows the exact data model, what is <em>not</em> in it, and what the dashboard looks like in practice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="tr-body">
+
+      <!-- 1. Datamodel -->
+      <h2>What's stored in the database</h2>
+      <p>Every time the app is opened, it sends a small signal to the server. That signal is <strong>not stored as a separate record</strong> — it's added directly to an existing row. The table is called <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">app_usage_daily</code> and has one row per unique combination of the fields below, per day.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Meaning</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>day</td><td>Date (UTC)</td><td style="color:var(--muted)">2026-06-03</td></tr>
+            <tr><td>app_version</td><td>App version</td><td style="color:var(--muted)">1.2.1</td></tr>
+            <tr><td>platform</td><td>Device type</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Country code (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Province</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>City (see privacy threshold ↓)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>license_state</td><td>License status</td><td style="color:var(--muted)">trial / free / licensed</td></tr>
+            <tr><td>count</td><td>Number of app opens for this combination</td><td style="color:var(--muted)">7</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px;">Here's what a real row looks like:</p>
+      <div class="example-row">
+        <table>
+          <thead>
+            <tr>
+              <th>app_version</th><th>platform</th><th>country</th><th>region</th><th>city</th><th>license_state</th><th>day</th><th>count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="val">1.2.1</td>
+              <td class="val">ios</td>
+              <td class="val">NL</td>
+              <td class="val">North Holland</td>
+              <td class="val">Amsterdam</td>
+              <td class="val">free</td>
+              <td class="val">2026-06-03</td>
+              <td class="val">7</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>That <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">count: 7</code> means: on 3 June 2026 the app was opened 7 times by someone (or several people) on an iPhone in Amsterdam, free version 2.1.0. There's no way to know whether this was one person or seven.</p>
+
+      <h2 style="margin-top: 44px;">Session statistics</h2>
+      <p>In addition, the app sends a second signal when a <strong>session ends</strong>. That's aggregated in a separate table: <code style="background: var(--charcoal); padding: 2px 6px; border-radius: 4px; font-size: 0.82em; color: var(--orange);">session_usage_daily</code>. This lets me see how many real resuscitations take place, without knowing the exact duration.</p>
+
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Meaning</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>day</td><td>Date (UTC)</td><td style="color:var(--muted)">2026-07-08</td></tr>
+            <tr><td>app_version</td><td>App version</td><td style="color:var(--muted)">1.2.1</td></tr>
+            <tr><td>platform</td><td>Device type</td><td style="color:var(--muted)">ios / ipados</td></tr>
+            <tr><td>country</td><td>Country code (ISO-2)</td><td style="color:var(--muted)">NL</td></tr>
+            <tr><td>region</td><td>Province</td><td style="color:var(--muted)">North Holland</td></tr>
+            <tr><td>city</td><td>City (see privacy threshold)</td><td style="color:var(--muted)">Amsterdam</td></tr>
+            <tr><td>session_bucket</td><td>Duration category</td><td style="color:var(--muted)">test / short / long</td></tr>
+            <tr><td>count</td><td>Number of sessions for this combination</td><td style="color:var(--muted)">3</td></tr>
+            <tr><td>total_sets</td><td>Total sets (summed)</td><td style="color:var(--muted)">12</td></tr>
+            <tr><td>total_shocks</td><td>Total shocks (summed)</td><td style="color:var(--muted)">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px;">The three duration categories:</p>
+      <ul>
+        <li><strong>test</strong> = shorter than 2 minutes (demo or test)</li>
+        <li><strong>short</strong> = 2 to 20 minutes (standard resuscitation)</li>
+        <li><strong>long</strong> = longer than 20 minutes (prolonged resuscitation)</li>
+      </ul>
+      <p>The exact duration is never sent. Sets and shocks are summed per bucket, not per individual session.</p>
+
+      <hr class="tr-divider">
+
+      <!-- 2. Wat ik NIET zie -->
+      <h2>What I don't see</h2>
+      <ul class="check-list">
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>No name or email address</strong> in the statistics. Those are only in the separate license table, and only for organizations with a license.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>No IP address stored.</strong> The IP is only used briefly in memory: it's sent momentarily to an external geo service (ipwho.is) to look up country, province and city. Right after that it's discarded — the IP is never logged or stored, neither by us nor by the geo service.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>No device ID</strong> in the statistics. Every signal is anonymous; there's no way to link two opens to the same device.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>No exact session content.</strong> Timestamps, the sequence and the precise duration of your session stay entirely local. I only see a duration category (short/medium/long), the number of sets and the number of shocks, summed per day.</span>
+        </li>
+        <li>
+          <svg class="icon-no" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <span><strong>No exact time.</strong> Only the date (day), no time of opening.</span>
+        </li>
+      </ul>
+
+      <hr class="tr-divider">
+
+      <!-- 3. Privacy-waarborgen -->
+      <h2>Privacy safeguards</h2>
+      <div class="waarborgen">
+        <div class="waarborg">
+          <div class="waarborg-title">Summed per day</div>
+          <div class="waarborg-desc">No time per open — just a daily total per combination. How often you open the app in a single day looks like one number.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">Small-cell suppression</div>
+          <div class="waarborg-desc">A <strong style="color: var(--white);">city</strong> is only shown from <strong style="color: var(--white);">5 opens</strong> onward. Smaller counts are only visible at province level. That way a single user in a small village can never be traced.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">Can be turned off</div>
+          <div class="waarborg-desc">You can turn this off completely via <strong style="color: var(--white);">Settings → Privacy</strong> in the app. Then the app sends nothing at all.</div>
+        </div>
+        <div class="waarborg">
+          <div class="waarborg-title">No dev builds</div>
+          <div class="waarborg-desc">Development and TestFlight builds send nothing. Only the App Store version sends statistics, so test data doesn't muddy the figures.</div>
+        </div>
+      </div>
+
+      <hr class="tr-divider">
+
+      <!-- 4. Hoe het dashboard eruitziet -->
+      <h2>What my dashboard looks like</h2>
+      <p>The view below is filled with <strong>example figures</strong> — not the real data. The layout, the fields and the privacy threshold are identical to the real dashboard.</p>
+
+      <div class="demo-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Example data — not the real figures. Structure and layout are identical to the real dashboard.
+      </div>
+
+      <div class="demo-wrap">
+        <div class="demo-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Usage statistics · last 90 days · fully anonymous and aggregated · stored within the EU (Supabase)
+        </div>
+
+        <!-- KPI's -->
+        <div class="kpi-grid">
+          <div class="kpi"><div class="kpi-val">1.847</div><div class="kpi-label">App opens (total)</div></div>
+          <div class="kpi"><div class="kpi-val">74</div><div class="kpi-label">Active days</div></div>
+          <div class="kpi"><div class="kpi-val">8</div><div class="kpi-label">Countries</div></div>
+          <div class="kpi"><div class="kpi-val">3</div><div class="kpi-label">App versions</div></div>
+        </div>
+
+        <!-- Dagelijks staafdiagram -->
+        <div class="daily-chart">
+          <div class="daily-chart-title">Per day (last 30 days) · 623 opens</div>
+          <div class="bar-row" id="dailyBars"></div>
+          <div class="chart-dates"><span>5 May</span><span>3 Jun</span></div>
+        </div>
+
+        <!-- Bar charts -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-title">By license status</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">free</span><span class="bar-meta-count">1.102</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">trial</span><span class="bar-meta-count">498</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">licensed</span><span class="bar-meta-count">247</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">By app version</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">1.2.1</span><span class="bar-meta-count">1.431</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">1.2.0</span><span class="bar-meta-count">318</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:22%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">1.1.0</span><span class="bar-meta-count">98</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:7%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">By country</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">NL</span><span class="bar-meta-count">1.563</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">BE</span><span class="bar-meta-count">142</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">DE</span><span class="bar-meta-count">87</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:5.5%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">other</span><span class="bar-meta-count">55</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:3.5%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">By province (NL)</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Noord-Holland</span><span class="bar-meta-count">487</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Zuid-Holland</span><span class="bar-meta-count">341</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Noord-Brabant</span><span class="bar-meta-count">218</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Gelderland</span><span class="bar-meta-count">164</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:34%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">other</span><span class="bar-meta-count">353</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steden met privacy-drempel -->
+        <div class="prov-card">
+          <div class="prov-card-title">By city (NL) — privacy threshold</div>
+          <div class="prov-note">Only cities with ≥ 5 opens are shown by name. Smaller counts still count toward the province score but can't be traced to an individual.</div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Amsterdam</span><span class="bar-meta-count">203</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Rotterdam</span><span class="bar-meta-count">148</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:73%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Den Haag</span><span class="bar-meta-count">112</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Utrecht</span><span class="bar-meta-count">94</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:46%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Alkmaar</span><span class="bar-meta-count">67</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:33%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Eindhoven</span><span class="bar-meta-count">51</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Breda</span><span class="bar-meta-count">38</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Nijmegen</span><span class="bar-meta-count">27</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:13%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Haarlem</span><span class="bar-meta-count">19</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-meta"><span class="bar-meta-label">Zwolle</span><span class="bar-meta-count">12</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+          </div>
+          <div class="hidden-note">14 smaller cities hidden (31 opens) — below the privacy threshold of 5</div>
+        </div>
+
+      </div><!-- /demo-wrap -->
+
+      <!-- 5. Sessiestatistieken demo -->
+      <div class="demo-wrap" style="margin-top: 32px;">
+        <div class="demo-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Session statistics · last 90 days · fully anonymous and aggregated
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi"><div class="kpi-val">312</div><div class="kpi-label">Sessions (total)</div></div>
+          <div class="kpi"><div class="kpi-val">87</div><div class="kpi-label">Real resuscitations</div></div>
+          <div class="kpi"><div class="kpi-val">3.4</div><div class="kpi-label">Avg. sets per session</div></div>
+          <div class="kpi"><div class="kpi-val">0.8</div><div class="kpi-label">Avg. shocks per session</div></div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-title">By duration category</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">test (&lt; 2 min)</span><span class="bar-meta-count">198</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">short (2-20 min)</span><span class="bar-meta-count">82</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:41%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">long (&gt; 20 min)</span><span class="bar-meta-count">32</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:16%"></div></div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-title">Total sets &amp; shocks</div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Sets (all sessions)</span><span class="bar-meta-count">1.064</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-meta"><span class="bar-meta-label">Shocks (all sessions)</span><span class="bar-meta-count">247</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="tr-divider">
+
+      <p>Questions about the data? Email <a href="mailto:info@bennit.nl">info@bennit.nl</a>. Full privacy policy: <a href="../privacy/">Reanimatie Timer Privacy Statement</a>.</p>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="rt-footer">
+    <div class="container rt-footer-inner">
+      <span>Developed by <a href="../../../" style="color: var(--orange); font-weight: 600;">BennIT</a> · Benjamin Ootjers · Active firefighter</span>
+      <div class="rt-footer-links">
+        <a href="https://apps.apple.com/app/reanimatie-timer/id6740523358" target="_blank" rel="noopener">App Store</a>
+        <a href="../privacy/">Privacy Statement</a>
+        <a href="../">Reanimatie Timer</a>
+        <a href="../../../">BennIT.nl</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('rtNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+    // Genereer nep-dagstaafjes (30 dagen)
+    const bars = document.getElementById('dailyBars');
+    const fakeDays = [8,12,6,14,18,9,7,21,25,19,11,8,15,22,28,17,13,9,16,24,20,14,10,18,23,19,12,8,15,21];
+    const maxBar = Math.max(...fakeDays);
+    fakeDays.forEach((v, i) => {
+      const col = document.createElement('div');
+      col.className = 'bar-col';
+      col.style.height = `${Math.max(5, (v / maxBar) * 100)}%`;
+      col.title = `${v} opens`;
+      bars.appendChild(col);
+    });
+  </script>
+
+</body>
+</html>

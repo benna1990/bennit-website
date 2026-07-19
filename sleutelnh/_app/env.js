@@ -1,0 +1,1 @@
+export const env={"PUBLIC_APP_URL":"http://localhost:5173","PUBLIC_ADMIN_URL":"http://localhost:5174","PUBLIC_MONTEUR_URL":"http://localhost:5175"}
